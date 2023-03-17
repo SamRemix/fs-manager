@@ -4,7 +4,7 @@ const { PORT, MONGO_URI } = process.env
 const express = require('express')
 const { connect } = require('mongoose')
 
-const usersRoutes = require('./routes/users')
+const authRoutes = require('./routes/auth')
 
 const logRequest = require('./middlewares/logRequest')
 
@@ -15,7 +15,7 @@ app.use(express.json())
 // middleware that log date, path & method at each request in the console
 app.use(logRequest)
 
-app.use('/users', usersRoutes)
+app.use('/auth', authRoutes)
 
 const dbConnection = async () => {
   try {
