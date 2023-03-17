@@ -23,10 +23,10 @@ const userSchema = new Schema({
 
 userSchema.statics.signup = async function (name, email, password) {
   // check if params are not empty
-  const isEmpty = !name && 'Name' || !email && 'Email' || !password && 'Password'
+  const isEmptyParam = !name && 'Name' || !email && 'Email' || !password && 'Password'
 
-  if (isEmpty) {
-    throw Error(`${isEmpty} cannot be empty`)
+  if (isEmptyParam) {
+    throw Error(`${isEmptyParam} cannot be empty`)
   }
 
   // check if email already matches a user
@@ -36,13 +36,13 @@ userSchema.statics.signup = async function (name, email, password) {
     throw Error('Email already in use')
   }
 
-  // check if name length is between 3 and 16 characters
+  // check if name length is between 3 and 32 characters
   if (name.trim().length < 3) {
     throw Error('Name must contain at least 3 characters')
   }
 
-  if (name.trim().length > 16) {
-    throw Error('Name must not exceed 16 characters')
+  if (name.trim().length > 32) {
+    throw Error('Name must not exceed 32 characters')
   }
 
   // check if email is valid
@@ -75,12 +75,11 @@ userSchema.statics.signup = async function (name, email, password) {
 
 userSchema.statics.login = async function (email, password) {
   // check if params are not empty
-  const isEmpty = !email && 'Email' || !password && 'Password'
+  const isEmptyParam = !email && 'Email' || !password && 'Password'
 
-  if (isEmpty) {
-    throw Error(`${isEmpty} cannot be empty`)
+  if (isEmptyParam) {
+    throw Error(`${isEmptyParam} cannot be empty`)
   }
-
 
   // check if email matches a user
   const user = await this.findOne({ email })
