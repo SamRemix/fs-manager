@@ -1,0 +1,106 @@
+const User = require('../models/users')
+const { Types } = require('mongoose')
+const { genSalt, hash, compare } = require('bcrypt')
+const { isEmail, isStrongPassword } = require('validator')
+
+const getUsers = async (req, res) => {
+  const users = await User
+    .find({})
+    .sort({ name: 1 })
+    .select([
+      'name', 'email', 'createdAt'
+    ])
+
+  res.status(200).json(users)
+}
+
+const getCurrentUser = async (req, res) => {
+  const { _id } = req.user
+
+  if (!Types.ObjectId.isValid(_id)) {
+    return res.status(400).json({ error: 'No such user, invalid id' })
+  }
+
+  const user = await User
+    .findOne({ _id })
+    .select([
+      '_id', 'name', 'email', 'createdAt', 'updatedAt'
+    ])
+
+  if (!user) {
+    return res.status(400).json({ error: 'No such user' })
+  }
+
+  res.status(200).json(user)
+}
+
+const updateUser = async (req, res) => {
+  const { _id } = req.user
+  const { name, email, currentPassword, newPassword } = req.body
+
+  if (!Types.ObjectId.isValid(_id)) {
+    return res.status(400).json({ error: 'No such user, invalid id' })
+  }
+
+  if (name || name === '') {
+    if (name.trim().length < 3) {
+      return res.status(400).json({ error: 'Name must be at least 3 characters' })
+    }
+  }
+
+  if (email) {
+    const exists = await User.findOne({ email })
+
+    if (exists) {
+      return res.status(400).json({ error: 'Email already in use' })
+    }
+
+    if (!isEmail(email)) {
+      return res.status(400).json({ error: 'Email is not valid' })
+    }
+  }
+
+  let hashPassword
+
+  if (currentPassword && newPassword) {
+    const user = await User.findOne({ _id })
+
+    const match = await compare(currentPassword, user.password)
+
+    console.log(match ? 'Current Password is good' : 'Current Password is NOT good')
+    console.log(currentPassword, newPassword)
+
+    if (!match) {
+      return res.status(400).json({ error: 'Incorrect password' })
+    }
+
+    if (currentPassword === newPassword) {
+      return res.status(400).json({ error: 'Passwords are the same' })
+    }
+
+    if (newPassword && !isStrongPassword(newPassword)) {
+      return res.status(400).json({ error: 'New password isn\'t strong enough' })
+
+    }
+
+    const salt = await genSalt(10)
+    hashPassword = await hash(newPassword, salt)
+  }
+
+  const user = await User
+    .findOneAndUpdate({ _id }, {
+      password: hashPassword,
+      ...req.body
+    }, {
+      // return updated data
+      new: true
+    })
+
+  if (!user) {
+    return res.status(400).json({ error: 'No such user' })
+  }
+
+  res.status(200).json(user)
+}
+
+module.exports = { getUsers, getCurrentUser, updateUser }

@@ -1,13 +1,13 @@
-const { signup, login } = require('../models/users')
+const User = require('../models/users')
 
 const createToken = require('../utils/createToken')
 
-const signUp = async (req, res) => {
+const signup = async (req, res) => {
   const { name, email, password } = req.body
 
   try {
     // register user with statics from user model
-    const user = await signup(name, email, password)
+    const user = await User.signup(name, email, password)
 
     // return token & user data
     res.status(200).json({ token: createToken(user._id), user })
@@ -16,12 +16,12 @@ const signUp = async (req, res) => {
   }
 }
 
-const logIn = async (req, res) => {
+const login = async (req, res) => {
   const { email, password } = req.body
 
   try {
     // login user with statics from user model
-    const user = await login(email, password)
+    const user = await User.login(email, password)
 
     // return token & user data
     res.status(200).json({ token: createToken(user._id), user })
@@ -30,4 +30,4 @@ const logIn = async (req, res) => {
   }
 }
 
-module.exports = { signUp, logIn }
+module.exports = { signup, login }
