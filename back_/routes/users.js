@@ -1,10 +1,4 @@
 const { Router } = require('express')
-// const {
-//   getUsers,
-//   getUser,
-//   updateUser,
-//   deleteUser
-// } = require('../controllers/users')
 const getAll = require('../controllers/users/getAll')
 const getOne = require('../controllers/users/getOne')
 const update = require('../controllers/users/update')
