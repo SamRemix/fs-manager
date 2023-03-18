@@ -1,22 +1,27 @@
 const { Router } = require('express')
-const {
-  getUsers,
-  getUser,
-  updateUser,
-  deleteUser
-} = require('../controllers/users')
+// const {
+//   getUsers,
+//   getUser,
+//   updateUser,
+//   deleteUser
+// } = require('../controllers/users')
+const getAll = require('../controllers/users/getAll')
+const getOne = require('../controllers/users/getOne')
+const update = require('../controllers/users/update')
+const remove = require('../controllers/users/remove')
+
 // const requireAuth = require('../middleware/requireAuth')
 
 const router = Router()
 
 // router.use(requireAuth)
 
-router.get('/', getUsers)
+router.get('/', getAll)
 
-router.get('/:id', getUser)
+router.get('/:id', getOne)
 
-router.patch('/:id', updateUser)
+router.patch('/:id', update)
 
-router.delete('/:id', deleteUser)
+router.delete('/:id', remove)
 
 module.exports = router
