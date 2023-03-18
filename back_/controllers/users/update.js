@@ -1,5 +1,6 @@
 const User = require('../../models/users')
 const { Types } = require('mongoose')
+const { isEmail, isStrongPassword } = require('validator')
 
 const update = async (req, res) => {
   // const { _id } = req.user
@@ -11,7 +12,6 @@ const update = async (req, res) => {
   }
 
   const curr = await User.findOne({ _id })
-  console.log(curr);
 
   if (!curr) {
     return res.status(400).json({ error: 'No such user' })
@@ -50,8 +50,6 @@ const update = async (req, res) => {
     hashPassword = await hash(newPassword, salt)
   }
 
-  console.log(password, newPassword, hashPassword);
-
   const user = await User
     .findOneAndUpdate({ _id }, {
       name,
@@ -61,8 +59,6 @@ const update = async (req, res) => {
       // return user with updated data
       new: true
     })
-
-  console.log(user.password);
 
   res.status(200).json(user)
 }
