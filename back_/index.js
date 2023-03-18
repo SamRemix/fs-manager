@@ -5,6 +5,7 @@ const express = require('express')
 const { connect } = require('mongoose')
 
 const authRoutes = require('./routes/auth')
+const usersRoutes = require('./routes/users')
 
 const logRequest = require('./middlewares/logRequest')
 
@@ -16,6 +17,7 @@ app.use(express.json())
 app.use(logRequest)
 
 app.use('/auth', authRoutes)
+app.use('/users', usersRoutes)
 
 const dbConnection = async () => {
   try {
