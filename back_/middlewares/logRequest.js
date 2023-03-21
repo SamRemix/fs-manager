@@ -1,8 +1,8 @@
-const logRequest = (req, res, next) => {
+const logRequest = ({ path, method }, res, next) => {
   console.log(`
-  ${new Date().toLocaleTimeString()}
-  PATH: ${req.path}
-  METHOD: ${req.method}
+  TIME: ${new Date().toLocaleTimeString()}
+  PATH: ${path}
+  METHOD: ${method}
   `)
 
   next()
