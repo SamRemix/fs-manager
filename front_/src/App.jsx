@@ -1,11 +1,33 @@
-import { memo, useState } from 'react'
+import { memo, useEffect, useState } from 'react'
+import axios from 'axios'
 
 const App = () => {
-  const [count, setCount] = useState(0)
+  const [users, setUsers] = useState([])
+
+  const getUsers = async () => {
+    try {
+      const { data } = await axios.get('http://localhost:4000/users')
+
+      setUsers(data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    getUsers()
+  }, [])
 
   return (
     <div className="App">
       <h1>fs-manager</h1>
+      <br />
+      {users.map(({ _id, name, email }) => (
+        <div key={_id}>
+          <p>{name}</p>
+          <p>{email}</p>
+        </div>
+      ))}
     </div>
   )
 }

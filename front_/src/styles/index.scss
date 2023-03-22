@@ -1,6 +1,15 @@
 @use './_reset.css';
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600;700;800&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
+
+@font-face {
+  font-family: 'Quicksand';
+  src: url('../../fonts/Quicksand-VariableFont_wght.woff2') format('woff2-variations');
+  font-weight: 300 700;
+  font-display: swap;
+}
 
 * {
   &::-webkit-scrollbar {
@@ -39,6 +48,28 @@ body {
       inset: 1rem auto auto 1rem;
       z-index: 1;
       pointer-events: none;
+    }
+
+    h1 {
+      font-family: 'Quicksand';
+      // font-family: 'Open sans';
+      font-size: 400%;
+      // font-weight: 600;
+      // font-stretch: 10px;
+      // font-weight: 300;
+      animation: .6s scale alternate infinite;
+
+      @keyframes scale {
+        0% {
+          // font-weight: 300;
+          font-variation-settings: 'wght' 300;
+        }
+
+        100% {
+          // font-weight: 700;
+          font-variation-settings: 'wght' 700;
+        }
+      }
     }
   }
 }

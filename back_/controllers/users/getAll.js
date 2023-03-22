@@ -7,7 +7,7 @@ const getAll = async (req, res) => {
     .sort({ name: 1 })
     // returns only certain fields
     .select([
-      'name', 'email', 'createdAt'
+      '_id', 'name', 'email', 'createdAt'
     ])
 
   res.status(200).json(users)
