@@ -1,3 +1,44 @@
 @use './_reset.css';
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600;700;800&display=swap');
+
+* {
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    margin: 1rem;
+    border-radius: 6px;
+  }
+
+  &::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+}
+
+body {
+  font-family: 'Poppins';
+
+  #root {
+    padding: 2rem;
+    position: relative;
+
+    &::before {
+      content: '';
+      width: calc(100% - 2rem);
+      height: calc(100% - 2rem);
+      box-shadow: 0 0 0 2rem #222;
+      border-radius: 1rem;
+      position: fixed;
+      inset: 1rem auto auto 1rem;
+      z-index: 1;
+      pointer-events: none;
+    }
+  }
+}
