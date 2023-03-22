@@ -1,16 +1,17 @@
 const User = require('../../models/users')
 const { Types } = require('mongoose')
 
-const getOne = async (req, res) => {
-  // const { _id } = req.user
-  const { id: _id } = req.params
+const getOne = async ({ params }, res) => {
+  const { id } = params
 
-  if (!Types.ObjectId.isValid(_id)) {
-    return res.status(400).json({ error: 'No such user, invalid id' })
+  // checks if id is a valid objectId
+  if (!Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ error: 'Invalid id' })
   }
 
   const user = await User
-    .findOne({ _id })
+    .findOne({ _id: id })
+    // returns only certain fields
     .select([
       '_id', 'name', 'email', 'createdAt', 'updatedAt'
     ])

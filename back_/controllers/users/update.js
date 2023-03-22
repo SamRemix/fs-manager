@@ -3,17 +3,19 @@ const { Types } = require('mongoose')
 const { compare, genSalt, hash } = require('bcrypt')
 const { isEmail, isStrongPassword } = require('validator')
 
-const update = async (req, res) => {
-  const { id } = req.params
-  const { name, email, password, newPassword } = req.body
+const update = async ({ params, body }, res) => {
+  const { id } = params
+  const { name, email, password, newPassword } = body
 
+  // checks if id is a valid objectId
   if (!Types.ObjectId.isValid(id)) {
     return res.status(400).json({ error: 'No such user, invalid id' })
   }
 
-  const curr = await User.findOne({ _id: id })
+  // finds current user based on id
+  const currentUser = await User.findOne({ _id: id })
 
-  if (!curr) {
+  if (!currentUser) {
     return res.status(400).json({ error: 'No such user' })
   }
 
@@ -21,32 +23,32 @@ const update = async (req, res) => {
     return res.status(400).json({ error: 'Name must be at least 3 characters' })
   }
 
-  // check if request email isn't equal to current user email
-  if (email && email !== curr.email) {
+  // checks if request email isn't equal to current user email
+  if (email && email !== currentUser.email) {
     const exists = await User.findOne({ email })
 
     if (exists) {
       return res.status(400).json({ error: 'Email already in use' })
     }
 
-    // check email validity
+    // checks email validity
     if (!isEmail(email)) {
       return res.status(400).json({ error: 'Email is not valid' })
     }
   }
 
-  // define the new hashed password if password and newPassword are set 
+  // defines the new hashed password if password and newPassword are set 
   let hashPassword
 
   if (password && newPassword) {
-    // compare request password with current user password
-    const match = await compare(password, curr.password)
+    // compares request password with current user password
+    const match = await compare(password, currentUser.password)
 
     if (!match) {
       return res.status(400).json({ error: 'Incorrect password' })
     }
 
-    // check newPassword validity
+    // checks newPassword validity
     if (!isStrongPassword(newPassword)) {
       return res.status(400).json({ error: 'New password isn\'t strong enough' })
     }
@@ -55,7 +57,7 @@ const update = async (req, res) => {
     hashPassword = await hash(newPassword, salt)
   }
 
-  // check if password or newPassword exists but not both
+  // checks if password or newPassword exists but not both
   if (!password && newPassword) {
     return res.status(400).json({ error: 'Incorrect password' })
   }
@@ -69,9 +71,9 @@ const update = async (req, res) => {
       name,
       email,
       // if hashPassword is undefined, return current user password
-      password: hashPassword || curr.password
+      password: hashPassword || currentUser.password
     }, {
-      // return user with updated data
+      // returns user with updated data
       new: true
     })
 

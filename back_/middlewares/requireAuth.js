@@ -14,11 +14,11 @@ const requireAuth = async (req, res, next) => {
   try {
     const { _id } = verify(token, process.env.SECRET)
 
+    // create req.user object
     req.user = await User.findOne({ _id }).select('_id')
 
     next()
   } catch (error) {
-    console.log(error)
     return res.status(401).json({ error: 'Request isn\'t authorized' })
   }
 }

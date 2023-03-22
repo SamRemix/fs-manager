@@ -1,19 +1,34 @@
 const User = require('../../models/users')
+const { compare } = require('bcrypt')
 
 const createToken = require('../../utils/createToken')
 
-const login = async (req, res) => {
-  const { email, password } = req.body
+const login = async ({ body }, res) => {
+  const { email, password } = body
 
-  try {
-    // login user with statics from user model
-    const user = await User.login(email, password)
+  // check if params are not empty
+  const isEmptyParam = !email && 'Email' || !password && 'Password'
 
-    // return token & user data
-    res.status(200).json({ token: createToken(user._id), user })
-  } catch ({ message }) {
-    res.status(400).json({ error: message })
+  if (isEmptyParam) {
+    return res.status(400).json({ error: `'${isEmptyParam}' field cannot be empty` })
   }
+
+  // check if email matches a user
+  const user = await User.findOne({ email })
+
+  if (!user) {
+    return res.status(400).json({ error: 'Incorrect email' })
+  }
+
+  // compare input password with hashed password from db
+  const match = await compare(password, user.password)
+
+  if (!match) {
+    return res.status(400).json({ error: 'Incorrect password' })
+  }
+
+  // return token & user data
+  res.status(200).json({ token: createToken(user._id), user })
 }
 
 module.exports = login
