@@ -60,19 +60,8 @@ body {
       pointer-events: none;
     }
 
-    h1 {
-      font-family: 'Merchant';
-      font-size: 400%;
-
-      span {
-        font-variation-settings: 'wght' 100, 'wdth' 100;
-        transition: .4s;
-
-        &:last-child {
-          color: #1f8cb4;
-          font-variation-settings: 'wght' 900, 'wdth' 90;
-        }
-      }
+    .container {
+      margin-top: 5rem;
     }
   }
 }
