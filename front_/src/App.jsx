@@ -20,7 +20,11 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1>fs-manager</h1>
+      <h1 className="title">
+        {'Cloud_remix'.split('_').map((letter, i) => (
+          <span key={i}>{letter}</span>
+        ))}
+      </h1>
       <br />
       {users.map(({ _id, name, email }) => (
         <div key={_id}>

@@ -11,6 +11,13 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Merchant';
+  src: url('../../fonts/Merchant-VF.woff2') format('woff2-variations');
+  font-weight: 100 900;
+  font-display: swap;
+}
+
 * {
   &::-webkit-scrollbar {
     width: 6px;
@@ -32,17 +39,20 @@
 }
 
 body {
+  background: #161b22;
   font-family: 'Poppins';
 
   #root {
     padding: 2rem;
+    height: 100vh;
+    background: #EFF6E0;
     position: relative;
 
     &::before {
       content: '';
       width: calc(100% - 2rem);
       height: calc(100% - 2rem);
-      box-shadow: 0 0 0 2rem #222;
+      box-shadow: 0 0 0 2rem #161b22;
       border-radius: 1rem;
       position: fixed;
       inset: 1rem auto auto 1rem;
@@ -51,23 +61,16 @@ body {
     }
 
     h1 {
-      font-family: 'Quicksand';
-      // font-family: 'Open sans';
+      font-family: 'Merchant';
       font-size: 400%;
-      // font-weight: 600;
-      // font-stretch: 10px;
-      // font-weight: 300;
-      animation: .6s scale alternate infinite;
 
-      @keyframes scale {
-        0% {
-          // font-weight: 300;
-          font-variation-settings: 'wght' 300;
-        }
+      span {
+        font-variation-settings: 'wght' 100, 'wdth' 100;
+        transition: .4s;
 
-        100% {
-          // font-weight: 700;
-          font-variation-settings: 'wght' 700;
+        &:last-child {
+          color: #1f8cb4;
+          font-variation-settings: 'wght' 900, 'wdth' 90;
         }
       }
     }
