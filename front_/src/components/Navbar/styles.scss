@@ -1,0 +1,64 @@
+.navbar {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  inset: auto auto 2rem;
+
+  &>&-items {
+    padding: 1rem;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba($color: #000, $alpha: .4);
+    border-radius: 1rem;
+    display: flex;
+    gap: 2rem;
+    position: relative;
+
+    .item {
+      width: 6rem;
+      display: flex;
+      justify-content: center;
+      position: relative;
+
+      &+.focus {
+        width: 6rem;
+        background: #0006;
+        border-radius: .5rem;
+        position: absolute;
+        inset: .5rem 0;
+        pointer-events: none;
+        transition: .4s
+      }
+
+      &-active {
+        @extend .item;
+
+        &:nth-child(1)~.focus {
+          transform: translateX(1rem);
+        }
+
+        &:nth-child(2)~.focus {
+          transform: translateX(9rem);
+        }
+
+        &:nth-child(3)~.focus {
+          transform: translateX(17rem);
+        }
+      }
+
+      // add separator between items
+      &:not(li:last-of-type)::before {
+        content: '';
+        width: 1px;
+        height: 80%;
+        background: #888;
+        position: absolute;
+        inset: 10% auto auto calc(100% + 1rem);
+      }
+
+      .link {
+        padding: .25rem;
+      }
+    }
+  }
+}

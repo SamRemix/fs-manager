@@ -1,38 +1,24 @@
-import { memo, useEffect, useState } from 'react'
-import axios from 'axios'
+import { memo } from 'react'
+import { Routes, Route, useLocation, Navigate } from 'react-router-dom'
+
+// import pages
+import Home from './pages/Home'
+import MyFiles from './pages/MyFiles'
+
+// import components
+import Navbar from './components/Navbar'
 
 const App = () => {
-  const [users, setUsers] = useState([])
-
-  const getUsers = async () => {
-    try {
-      const { data } = await axios.get('http://localhost:4000/users')
-
-      setUsers(data)
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  useEffect(() => {
-    getUsers()
-  }, [])
+  const location = useLocation()
 
   return (
-    <div className="App">
-      <h1 className="title">
-        {'Cloud_remix'.split('_').map((letter, i) => (
-          <span key={i}>{letter}</span>
-        ))}
-      </h1>
-      <br />
-      {users.map(({ _id, name, email }) => (
-        <div key={_id}>
-          <p>{name}</p>
-          <p>{email}</p>
-        </div>
-      ))}
-    </div>
+    <>
+      <Navbar />
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<Home />} />
+        <Route path="/my-files" element={<MyFiles />} />
+      </Routes>
+    </>
   )
 }
 
