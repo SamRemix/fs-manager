@@ -5,8 +5,13 @@ import App from './App'
 
 import './styles/index.scss'
 
+// context provider imports
+import { UsersProvider } from './contexts/UsersContext'
+
 createRoot(document.getElementById('root')).render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
+  <UsersProvider>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </UsersProvider>
 )

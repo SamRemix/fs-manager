@@ -1,10 +1,14 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
+
+import { UsersContext } from '../contexts/UsersContext'
 
 import axios from 'axios'
 
 const useFetch = ({ method, url }) => {
   const [response, setResponse] = useState(null)
   const [error, setError] = useState('')
+
+  const { dispatch: setUsers } = useContext(UsersContext)
 
   // create axios instance to set the API as base url
   const instance = axios.create({ baseURL: 'http://localhost:4000' })
@@ -20,6 +24,18 @@ const useFetch = ({ method, url }) => {
       const { data } = await instance[method](url, body)
 
       setResponse(data)
+
+      // reusable dispatch function for any context
+      const exec = dispatch => (
+        dispatch({
+          type: method.toUpperCase(),
+          payload: data
+        })
+      )
+
+      return {
+        users: () => exec(setUsers)
+      }[url.split('/')[1]]()
     } catch (error) {
       setError(error)
     }
