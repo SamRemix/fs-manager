@@ -4,7 +4,7 @@ $itemsNumber: 5;
 @mixin container {
   background: #fff;
   box-shadow: 0 2px 4px rgba($color: #000, $alpha: .4);
-  border-radius: .5rem;
+  border-radius: 1rem;
   display: flex;
   position: fixed;
   z-index: 2;
@@ -16,21 +16,20 @@ $itemsNumber: 5;
     position: relative;
 
     .item {
-      width: 8rem;
+      width: 4rem;
+      border-radius: .5rem;
       display: flex;
       justify-content: center;
       position: relative;
 
-      &+.focus {
-        width: 8rem;
-        background: #dbff73;
-        border: 1px solid #888;
-        border-radius: .5rem;
-        position: absolute;
-        inset: .5rem 1rem;
-        pointer-events: none;
-        z-index: -1;
-        transition: .4s;
+      &-active,
+      &:hover {
+        .link {
+          .link-title {
+            transform: translate(-50%, 0);
+            opacity: 1;
+          }
+        }
       }
 
       &-active {
@@ -39,7 +38,7 @@ $itemsNumber: 5;
         // set position of 'focus' based on active element (+8rem at each item)
         @for $i from 1 through $itemsNumber {
           &:nth-child(#{$i + 1})~.focus {
-            transform: translateX($i * 10rem);
+            transform: translateX($i * 6rem);
           }
         }
       }
@@ -54,19 +53,43 @@ $itemsNumber: 5;
         inset: 10% auto auto calc(100% + 1rem);
       }
 
+      &+.focus {
+        width: 4rem;
+        background: #dbff73;
+        border: 1px solid #888;
+        border-radius: .5rem;
+        position: absolute;
+        inset: .75rem 1rem;
+        pointer-events: none;
+        z-index: -1;
+        transition: .4s;
+      }
+
       .link {
         padding: .5rem;
+        width: 100%;
+        border-radius: .5rem;
         display: flex;
-        align-items: center;
+        // align-items: center;
+        justify-content: center;
         gap: .75rem;
+        position: relative;
 
         &-icon {
           width: 1.5rem;
         }
 
         &-title {
-          display: flex;
-          flex: 1;
+          padding: .5rem;
+          width: fit-content;
+          background: #3c3c3c;
+          border-radius: .5rem;
+          color: #fff;
+          position: absolute;
+          white-space: nowrap;
+          transform: translate(-50%, 1rem);
+          opacity: 0;
+          transition: .2s;
         }
       }
     }
@@ -96,11 +119,31 @@ $itemsNumber: 5;
       }
     }
   }
+
+  &-items {
+    .item {
+      .link {
+        &-title {
+          inset: auto auto -2.5rem 50%;
+        }
+      }
+    }
+  }
 }
 
 .navbar {
   @include container;
   justify-content: center;
   // $itemsNumber * 10rem = navbar width, divide it by 2 to center it
-  inset: auto auto 2rem calc(50% - calc($itemsNumber * 10rem / 2));
+  inset: auto auto 2rem calc(50% - calc($itemsNumber * 6rem / 2));
+
+  &-items {
+    .item {
+      .link {
+        &-title {
+          inset: -2.5rem auto auto 50%;
+        }
+      }
+    }
+  }
 }
