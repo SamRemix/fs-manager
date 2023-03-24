@@ -3,6 +3,8 @@ import './styles.scss'
 import { memo } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 
+import displayIcon from '../../utils/displayIcon'
+
 import { links, authLinks } from './links'
 
 const Navbar = () => {
@@ -15,9 +17,11 @@ const Navbar = () => {
 
   // create a function that returns jsx to display links (used in header & navbar)
   const displayLinks = links => (
-    links.map(({ id, path, name }) => (
+    links.map(({ id, path, name, icon }) => (
       <li className={path === pathname ? 'item-active' : 'item'} key={id}>
         <NavLink to={path} className="link">
+          {displayIcon(icon, { className: 'link-icon' })}
+
           <p className="link-title">{name}</p>
         </NavLink>
       </li>

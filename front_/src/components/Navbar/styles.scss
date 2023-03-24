@@ -4,26 +4,27 @@ $itemsNumber: 3;
 @mixin container {
   background: #fff;
   box-shadow: 0 2px 4px rgba($color: #000, $alpha: .4);
-  border-radius: 1rem;
+  border-radius: .5rem;
   display: flex;
   position: fixed;
+  z-index: 2;
 
   &-items {
-    padding: 1rem;
+    padding: .75rem 1rem;
     display: flex;
     gap: 2rem;
     position: relative;
 
     .item {
-      width: 6rem;
+      width: 8rem;
       display: flex;
       justify-content: center;
       position: relative;
 
       &+.focus {
-        width: 6rem;
-        // background: #0004;
-        background: #42D595;
+        width: 8rem;
+        background: #dbff73;
+        border: 1px solid #888;
         border-radius: .5rem;
         position: absolute;
         inset: .5rem 1rem;
@@ -38,7 +39,7 @@ $itemsNumber: 3;
         // set position of 'focus' based on active element (+8rem at each item)
         @for $i from 1 through $itemsNumber {
           &:nth-child(#{$i + 1})~.focus {
-            transform: translateX($i * 8rem);
+            transform: translateX($i * 10rem);
           }
         }
       }
@@ -54,7 +55,19 @@ $itemsNumber: 3;
       }
 
       .link {
-        padding: .25rem;
+        padding: .5rem;
+        display: flex;
+        align-items: center;
+        gap: .75rem;
+
+        &-icon {
+          width: 1.5rem;
+        }
+
+        &-title {
+          display: flex;
+          flex: 1;
+        }
       }
     }
   }
@@ -68,7 +81,6 @@ $itemsNumber: 3;
   align-items: center;
   justify-content: space-between;
   inset: .5rem auto auto .5rem;
-  z-index: 2;
 
   &-title {
     font-family: 'Merchant';

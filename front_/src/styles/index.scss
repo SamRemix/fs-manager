@@ -39,20 +39,20 @@
 }
 
 body {
-  background: #161b22;
+  background: #1b1b1b;
   font-family: 'Poppins';
 
   #root {
     padding: 2rem;
     height: 100vh;
-    background: #EFF6E0;
+    background: #e6e6e6;
     position: relative;
 
     &::before {
       content: '';
       width: calc(100% - 2rem);
       height: calc(100% - 2rem);
-      box-shadow: 0 0 0 2rem #161b22;
+      box-shadow: 0 0 0 2rem #1b1b1b;
       border-radius: 1rem;
       position: fixed;
       inset: 1rem auto auto 1rem;
