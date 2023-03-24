@@ -1,32 +1,19 @@
-import { memo, useEffect, useState } from 'react'
+import { memo } from 'react'
 
-import axios from 'axios'
+import useFetch from '../../../hooks/useFetch'
 
 const Home = () => {
-  const [users, setUsers] = useState([])
 
-  const getUsers = async () => {
-    try {
-      const { data } = await axios.get('http://localhost:4000/users')
+  const { response: users } = useFetch({
+    method: 'get',
+    url: '/users'
+  })
 
-      setUsers(data)
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  useEffect(() => {
-    getUsers()
-  }, [])
+  users && console.log('USERS', users)
 
   return (
     <section className="container">
       <h1>Home</h1>
-      <div>
-        {users.map(({ _id, name }) => (
-          <p key={_id}>{name}</p>
-        ))}
-      </div>
     </section>
   )
 }
