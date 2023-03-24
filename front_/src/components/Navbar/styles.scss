@@ -1,5 +1,5 @@
-// max items number (2 in header, 3 in navbar)
-$itemsNumber: 3;
+// max items number (2 in header, 5 in navbar)
+$itemsNumber: 5;
 
 @mixin container {
   background: #fff;
@@ -101,6 +101,6 @@ $itemsNumber: 3;
 .navbar {
   @include container;
   justify-content: center;
-  // $itemsNumber * 8rem = navbar width, divide it by 2 to center it
-  inset: auto auto 2rem calc(50% - calc($itemsNumber * 8rem / 2));
+  // $itemsNumber * 10rem = navbar width, divide it by 2 to center it
+  inset: auto auto 2rem calc(50% - calc($itemsNumber * 10rem / 2));
 }
