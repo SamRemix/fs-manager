@@ -6,12 +6,15 @@ import App from './App'
 import './styles/index.scss'
 
 // context provider imports
+import { AuthProvider } from './contexts/AuthContext'
 import { UsersProvider } from './contexts/UsersContext'
 
 createRoot(document.getElementById('root')).render(
-  <UsersProvider>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </UsersProvider>
+  <AuthProvider>
+    <UsersProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </UsersProvider>
+  </AuthProvider>
 )

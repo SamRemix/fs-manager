@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from 'react'
 
+import { AuthContext } from '../contexts/AuthContext'
 import { UsersContext } from '../contexts/UsersContext'
 
 import axios from 'axios'
@@ -8,6 +9,7 @@ const useFetch = ({ method, url }) => {
   const [response, setResponse] = useState(null)
   const [error, setError] = useState('')
 
+  const { dispatch: setToken } = useContext(AuthContext)
   const { dispatch: setUsers } = useContext(UsersContext)
 
   // create axios instance to set the API as base url
@@ -33,9 +35,13 @@ const useFetch = ({ method, url }) => {
       )
 
       exec({
-        users: setUsers,
-        auth: null
+        auth: setToken,
+        users: setUsers
       }[url.split('/')[1]])
+
+      if (url.startsWith('/auth')) {
+        localStorage.setItem('token', data)
+      }
 
       setResponse(data)
     } catch ({ response }) {
