@@ -12,7 +12,7 @@ import Button from '../Button'
 
 import displayIcon from '../../utils/displayIcon'
 
-import { links, isLogOut, logOut, userProfile } from './links'
+import { links, isLogOut } from './links'
 
 const Layout = () => {
   const { token, user } = useContext(AuthContext)
@@ -55,25 +55,25 @@ const Layout = () => {
             displayLinks(isLogOut)
           ) : (
             <>
-              <li className="item" key={logOut.id} onClick={disconnect} style={{ cursor: 'pointer' }}>
+              <li className="item" onClick={disconnect} style={{ cursor: 'pointer' }}>
                 <div className="link">
-                  {displayIcon(logOut.icon, { className: 'link-icon' })}
+                  {displayIcon('ArrowLeftOnRectangleIcon', { className: 'link-icon' })}
 
-                  <p className="link-title">{logOut.name}</p>
+                  <p className="link-title">Log out</p>
                 </div>
               </li>
-              <li className={`${userProfile.path}/${user._id}` === pathname ? 'item-active' : 'item'} key={userProfile.id}>
-                <NavLink to={`${userProfile.path}/${user._id}`} className="link">
+              <li className={`/user-profile/${user._id}` === pathname ? 'item-active' : 'item'}>
+                <NavLink to={`/user-profile/${user._id}`} className="link">
                   {/* icon will be replaced by the profile picture */}
-                  {displayIcon(userProfile.icon, { className: 'link-icon' })}
+                  {displayIcon('UserCircleIcon', { className: 'link-icon' })}
 
-                  <p className="link-title">{userProfile.name}</p>
+                  <p className="link-title">Profile</p>
                 </NavLink>
               </li>
             </>
           )}
 
-          {(exists(isLogOut) || `${userProfile.path}/${user?._id}` === pathname) && (
+          {(exists(isLogOut) || `/user-profile/${user?._id}` === pathname) && (
             <div className="focus" />
           )}
         </ul>

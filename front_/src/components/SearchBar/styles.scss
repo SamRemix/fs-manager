@@ -2,10 +2,27 @@
   position: relative;
 
   .results {
-    padding: 1rem;
-    background: #ccc;
+    padding: 4rem 2rem 1rem;
+    width: calc(100% + 2rem);
+    background: rgba($color: #000, $alpha: .6);
+    border-radius: .5rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
     position: absolute;
-    inset: 100% 0;
+    // inset: calc(100% - .5rem) -1rem auto;
+    inset: -1rem -1rem auto;
     z-index: -1;
+
+    &-item {
+      padding: .5rem;
+      background: #fff;
+      border-radius: .5rem;
+      position: relative;
+
+      &-email {
+        font-size: 90%;
+      }
+    }
   }
 }

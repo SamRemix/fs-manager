@@ -13,7 +13,6 @@ const SearchBar = () => {
   const { users } = useContext(UsersContext)
 
   const { prefix, setPrefix, search } = useSearch()
-  console.log(users && search(users));
 
   return (
     <div className="searchbar-container">
@@ -21,10 +20,13 @@ const SearchBar = () => {
 
       {prefix && (
         <div className="results">
-          {users && search(users).map(({ _id, name }) => (
-            <Link key={_id} to={`user-profile/${_id}`} onClick={() => setPrefix('')}>
-              <p>{name}</p>
-            </Link>
+          {users && search(users).map(({ _id, name, email }) => (
+            <div className="results-item">
+              <Link key={_id} to={`user-profile/${_id}`} onClick={() => setPrefix('')}>
+                <p className="results-item-name">{name}</p>
+                <p className="results-item-email">{email}</p>
+              </Link>
+            </div>
           ))}
         </div>
       )}

@@ -46,16 +46,3 @@ export const isLogOut = [
     icon: 'ArrowRightOnRectangleIcon'
   }
 ]
-
-export const logOut = {
-  id: id++,
-  name: 'Log out',
-  icon: 'ArrowLeftOnRectangleIcon'
-}
-
-export const userProfile = {
-  id: id++,
-  path: '/user-profile',
-  name: 'Profile',
-  icon: 'UserCircleIcon'
-}
