@@ -43,7 +43,7 @@ const useFetch = ({ method, url }) => {
       }[url.split('/')[1]])
 
       if (url.startsWith('/auth')) {
-        localStorage.setItem('token', data)
+        localStorage.setItem('auth', JSON.stringify(data))
         navigate('/')
       }
 

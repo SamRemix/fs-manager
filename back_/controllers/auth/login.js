@@ -28,7 +28,7 @@ const login = async ({ body }, res) => {
   }
 
   // returns token
-  res.status(200).json(createToken(user._id))
+  res.status(200).json({ token: createToken(user._id), user })
 }
 
 module.exports = login

@@ -13,6 +13,8 @@ import Layout from './components/Layout'
 const App = () => {
   const location = useLocation()
 
+  const token = localStorage.getItem('token')
+
   return (
     <>
       <Layout />
@@ -21,8 +23,8 @@ const App = () => {
 
         <Route path="/my-files" element={<MyFiles />} />
 
-        <Route path="/sign-up" element={<SignUp />} />
-        <Route path="/log-in" element={<LogIn />} />
+        <Route path="/sign-up" element={!token ? <SignUp /> : <Navigate to="/" />} />
+        <Route path="/log-in" element={!token ? <LogIn /> : <Navigate to="/" />} />
       </Routes>
     </>
   )
