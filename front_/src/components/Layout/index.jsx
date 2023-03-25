@@ -11,10 +11,10 @@ import Button from '../Button'
 
 import displayIcon from '../../utils/displayIcon'
 
-import { links, authLinks, logOut } from './links'
+import { links, isLogOut, logOut, userProfile } from './links'
 
 const Layout = () => {
-  const { token, dispatch } = useContext(AuthContext)
+  const { token } = useContext(AuthContext)
 
   const { pathname } = useLocation()
 
@@ -49,21 +49,28 @@ const Layout = () => {
 
         <ul className="header-items">
           {!token ? (
-            displayLinks(authLinks)
+            displayLinks(isLogOut)
           ) : (
-            <li
-              className="item"
-              key={logOut.id}
-              onClick={disconnect}>
-              <div className="link" style={{ cursor: 'pointer' }}>
-                {displayIcon(logOut.icon, { className: 'link-icon' })}
+            <>
+              <li className="item" key={logOut.id} onClick={disconnect} style={{ cursor: 'pointer' }}>
+                <div className="link">
+                  {displayIcon(logOut.icon, { className: 'link-icon' })}
 
-                <p className="link-title">{logOut.name}</p>
-              </div>
-            </li>
+                  <p className="link-title">{logOut.name}</p>
+                </div>
+              </li>
+              <li className={userProfile.path === pathname ? 'item-active' : 'item'} key={userProfile.id}>
+                <NavLink to={userProfile.path} className="link">
+                  {/* icon will be replaced by the profile picture */}
+                  {displayIcon(userProfile.icon, { className: 'link-icon' })}
+
+                  <p className="link-title">{userProfile.name}</p>
+                </NavLink>
+              </li>
+            </>
           )}
 
-          {exists(authLinks) && <div className="focus" />}
+          {exists([...isLogOut, userProfile]) && <div className="focus" />}
         </ul>
       </header>
 

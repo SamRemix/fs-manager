@@ -33,7 +33,7 @@ export const links = [
   }
 ]
 
-export const authLinks = [
+export const isLogOut = [
   {
     id: id++,
     path: '/sign-up',
@@ -51,4 +51,11 @@ export const logOut = {
   id: id++,
   name: 'Log out',
   icon: 'ArrowLeftOnRectangleIcon'
+}
+
+export const userProfile = {
+  id: id++,
+  path: '/profile',
+  name: 'Profile',
+  icon: 'UserCircleIcon'
 }
