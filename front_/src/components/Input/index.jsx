@@ -12,6 +12,7 @@ const Input = ({
   onChange,
   maxLength,
   autoFocus,
+  ref,
   error,
   setPrefix,
   key,
@@ -77,7 +78,7 @@ const Input = ({
             value={value}
             onChange={({ target }) => setPrefix(target.value)}
             key={key}
-            ref={autoFocus}
+            ref={ref}
           />
 
           <div className="search-icon">

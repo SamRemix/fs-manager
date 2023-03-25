@@ -7,6 +7,7 @@ import { AuthContext } from '../../contexts/AuthContext'
 
 import useLogOut from '../../hooks/useLogOut'
 
+import SearchBar from '../SearchBar'
 import Button from '../Button'
 
 import displayIcon from '../../utils/displayIcon'
@@ -47,6 +48,8 @@ const Layout = () => {
           ))}
         </h1>
 
+        <SearchBar />
+
         <ul className="header-items">
           {!token ? (
             displayLinks(isLogOut)
@@ -70,7 +73,7 @@ const Layout = () => {
             </>
           )}
 
-          {(exists(isLogOut) || `${userProfile.path}/${user._id}` === pathname) && (
+          {(exists(isLogOut) || `${userProfile.path}/${user?._id}` === pathname) && (
             <div className="focus" />
           )}
         </ul>
