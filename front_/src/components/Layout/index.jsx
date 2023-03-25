@@ -7,7 +7,7 @@ import displayIcon from '../../utils/displayIcon'
 
 import { links, authLinks } from './links'
 
-const Navbar = () => {
+const Layout = () => {
   const { pathname } = useLocation()
 
   // checks if links includes pathname and then returns 'focus' in the jsx
@@ -55,4 +55,4 @@ const Navbar = () => {
   )
 }
 
-export default memo(Navbar)
+export default memo(Layout)

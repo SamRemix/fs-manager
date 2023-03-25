@@ -7,14 +7,14 @@ import MyFiles from './pages/MyFiles'
 import SignUp from './pages/SignUp'
 
 // import components
-import Navbar from './components/Navbar'
+import Layout from './components/Layout'
 
 const App = () => {
   const location = useLocation()
 
   return (
     <>
-      <Navbar />
+      <Layout />
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Home />} />
 
