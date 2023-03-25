@@ -46,3 +46,9 @@ export const authLinks = [
     icon: 'ArrowRightOnRectangleIcon'
   }
 ]
+
+export const logOut = {
+  id: id++,
+  name: 'Log out',
+  icon: 'ArrowLeftOnRectangleIcon'
+}

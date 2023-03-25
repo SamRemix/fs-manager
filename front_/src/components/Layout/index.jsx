@@ -1,13 +1,19 @@
 import './styles.scss'
 
-import { memo } from 'react'
+import { memo, useContext } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
+
+import { AuthContext } from '../../contexts/AuthContext'
 
 import displayIcon from '../../utils/displayIcon'
 
-import { links, authLinks } from './links'
+import { links, authLinks, logOut } from './links'
 
 const Layout = () => {
+  const { token, dispatch } = useContext(AuthContext)
+
+  console.log(token)
+
   const { pathname } = useLocation()
 
   // checks if links includes pathname and then returns 'focus' in the jsx
@@ -38,7 +44,20 @@ const Layout = () => {
         </h1>
 
         <ul className="header-items">
-          {displayLinks(authLinks)}
+          {!token ? (
+            displayLinks(authLinks)
+          ) : (
+            <li
+              className="item"
+              key={logOut.id}
+              onClick={() => dispatch({ type: 'LOG_OUT' })}>
+              <div className="link" style={{ cursor: 'pointer' }}>
+                {displayIcon(logOut.icon, { className: 'link-icon' })}
+
+                <p className="link-title">{logOut.name}</p>
+              </div>
+            </li>
+          )}
 
           {exists(authLinks) && <div className="focus" />}
         </ul>

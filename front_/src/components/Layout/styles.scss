@@ -89,6 +89,7 @@ $itemsNumber: 5;
           white-space: nowrap;
           transform: translate(-50%, 1rem);
           opacity: 0;
+          pointer-events: none;
           transition: .2s;
         }
       }

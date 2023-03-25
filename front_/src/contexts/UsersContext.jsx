@@ -1,8 +1,10 @@
 import { createContext, useReducer } from 'react'
 
-const users = null
+const init = {
+  users: null
+}
 
-const Reducer = (state = users, { type, payload }) => {
+const Reducer = (state = init, { type, payload }) => {
   switch (type) {
     case 'GET':
       return {
@@ -14,15 +16,15 @@ const Reducer = (state = users, { type, payload }) => {
   }
 }
 
-export const UsersContext = createContext(users)
+export const UsersContext = createContext(init)
 
 export const UsersProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(Reducer, users)
+  const [state, dispatch] = useReducer(Reducer, init)
 
   console.log('USERS_CONTEXT', state)
 
   return (
-    <UsersContext.Provider value={{ state, dispatch }}>
+    <UsersContext.Provider value={{ ...state, dispatch }}>
       {children}
     </UsersContext.Provider>
   )

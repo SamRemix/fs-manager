@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import { AuthContext } from '../contexts/AuthContext'
 import { UsersContext } from '../contexts/UsersContext'
@@ -11,6 +12,8 @@ const useFetch = ({ method, url }) => {
 
   const { dispatch: setToken } = useContext(AuthContext)
   const { dispatch: setUsers } = useContext(UsersContext)
+
+  const navigate = useNavigate()
 
   // create axios instance to set the API as base url
   const instance = axios.create({ baseURL: 'http://localhost:4000' })
@@ -41,6 +44,7 @@ const useFetch = ({ method, url }) => {
 
       if (url.startsWith('/auth')) {
         localStorage.setItem('token', data)
+        navigate('/')
       }
 
       setResponse(data)
