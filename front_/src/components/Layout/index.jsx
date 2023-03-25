@@ -5,6 +5,8 @@ import { NavLink, useLocation } from 'react-router-dom'
 
 import { AuthContext } from '../../contexts/AuthContext'
 
+import useLogOut from '../../hooks/useLogOut'
+
 import displayIcon from '../../utils/displayIcon'
 
 import { links, authLinks, logOut } from './links'
@@ -13,6 +15,8 @@ const Layout = () => {
   const { token, dispatch } = useContext(AuthContext)
 
   const { pathname } = useLocation()
+
+  const { disconnect } = useLogOut()
 
   // checks if links includes pathname and then returns 'focus' in the jsx
   const exists = links => (
@@ -48,7 +52,7 @@ const Layout = () => {
             <li
               className="item"
               key={logOut.id}
-              onClick={() => dispatch({ type: 'LOG_OUT' })}>
+              onClick={disconnect}>
               <div className="link" style={{ cursor: 'pointer' }}>
                 {displayIcon(logOut.icon, { className: 'link-icon' })}
 
