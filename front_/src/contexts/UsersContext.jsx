@@ -4,11 +4,16 @@ const init = {
   users: null
 }
 
-const Reducer = (state = init, { type, payload }) => {
+const Reducer = ({ users } = init, { type, payload }) => {
   switch (type) {
     case 'GET':
       return {
         users: payload
+      }
+
+    case 'DELETE':
+      return {
+        users: users.filter(({ _id }) => _id !== payload._id)
       }
 
     default:

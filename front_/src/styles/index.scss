@@ -46,8 +46,12 @@ body {
     padding: 2rem;
     height: 100vh;
     background: #e6e6e6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: relative;
-    overflow: hidden;
+    // overflow: hidden;
+    overflow: hidden scroll;
 
     &::before {
       content: '';
@@ -62,13 +66,14 @@ body {
     }
 
     .container {
-      margin-top: 5rem;
-      min-height: calc(100% - 10rem);
+      margin: 6rem 0;
+      // min-height: calc(100% - 10rem);
       display: flex;
       align-items: center;
       justify-content: center;
       flex-direction: column;
       gap: 2rem;
+      // overflow: hidden scroll;
 
       h1 {
         font-family: 'Merchant';
