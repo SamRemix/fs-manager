@@ -55,7 +55,7 @@ export const logOut = {
 
 export const userProfile = {
   id: id++,
-  path: '/profile',
+  path: '/user-profile',
   name: 'Profile',
   icon: 'UserCircleIcon'
 }

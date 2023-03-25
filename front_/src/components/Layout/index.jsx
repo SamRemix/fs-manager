@@ -14,7 +14,7 @@ import displayIcon from '../../utils/displayIcon'
 import { links, isLogOut, logOut, userProfile } from './links'
 
 const Layout = () => {
-  const { token } = useContext(AuthContext)
+  const { token, user } = useContext(AuthContext)
 
   const { pathname } = useLocation()
 
