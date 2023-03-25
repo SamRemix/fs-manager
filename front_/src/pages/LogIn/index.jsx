@@ -2,6 +2,8 @@ import { memo, useState } from 'react'
 
 import useFetch from '../../hooks/useFetch'
 
+import Input from '../../components/Input'
+
 const LogIn = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -19,17 +21,19 @@ const LogIn = () => {
 
   return (
     <section className="container">
+      <h1>Log in</h1>
+
       <form onSubmit={login}>
-        <input
+        <Input
           placeholder="Email"
           value={email}
           onChange={({ target }) => {
             setEmail(target.value)
           }}
-          autoFocus
+          focus={true}
         />
 
-        <input
+        <Input
           type="password"
           placeholder="Password"
           value={password}

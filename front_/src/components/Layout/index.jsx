@@ -7,6 +7,8 @@ import { AuthContext } from '../../contexts/AuthContext'
 
 import useLogOut from '../../hooks/useLogOut'
 
+import Button from '../Button'
+
 import displayIcon from '../../utils/displayIcon'
 
 import { links, authLinks, logOut } from './links'
@@ -64,6 +66,10 @@ const Layout = () => {
           {exists(authLinks) && <div className="focus" />}
         </ul>
       </header>
+
+      <div className="previous">
+        <Button className="back" />
+      </div>
 
       <nav className="navbar">
         <ul className="navbar-items">

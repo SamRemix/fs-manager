@@ -108,7 +108,7 @@ $itemsNumber: 5;
 
   &-title {
     font-family: 'Merchant';
-    font-size: 200%;
+    font-size: 250%;
 
     span {
       font-variation-settings: 'wght' 400, 'wdth' 90;
@@ -130,6 +130,11 @@ $itemsNumber: 5;
       }
     }
   }
+}
+
+.previous {
+  position: fixed;
+  inset: 6rem auto auto 2rem;
 }
 
 .navbar {

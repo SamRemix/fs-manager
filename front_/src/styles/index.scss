@@ -47,6 +47,7 @@ body {
     height: 100vh;
     background: #e6e6e6;
     position: relative;
+    overflow: hidden;
 
     &::before {
       content: '';
@@ -62,9 +63,22 @@ body {
 
     .container {
       margin-top: 5rem;
+      min-height: calc(100% - 10rem);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 2rem;
+
+      h1 {
+        font-family: 'Merchant';
+        font-size: 200%;
+        font-variation-settings: 'wght' 400, 'wdth' 90;
+      }
 
       form {
         display: flex;
+        align-items: center;
         flex-direction: column;
         gap: 1rem;
       }

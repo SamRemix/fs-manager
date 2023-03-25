@@ -1,0 +1,60 @@
+// @use '../../styles/vars' as v;
+// @use '../../styles/mixins' as mix;
+
+@mixin button-style {
+  // @include mix.flex-align-gap(.75rem);
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  padding: 0 1.25rem;
+  width: fit-content;
+  height: 2.25rem;
+  background: unset;
+  border-radius: .5rem;
+  color: #000;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.primary {
+  @include button-style;
+  background: #DBFF73;
+  // box-shadow: v.$box-shadow-lg;
+  font-weight: 600;
+  // transition: box-shadow .1s;
+
+  // &:hover {
+  //   box-shadow: v.$box-shadow-md;
+
+  //   &:active {
+  //     box-shadow: v.$box-shadow-sm;
+  //   }
+  // }
+
+  &:disabled {
+    opacity: .6;
+  }
+}
+
+.secondary {
+  @include button-style;
+  background: #ccc;
+  box-shadow: 0 0 0 .125rem #000;
+  // border: var(--task-border);
+  color: #fff;
+}
+
+.form-button {
+  @extend .primary;
+  margin-left: 2rem;
+}
+
+.delete {
+  @extend .secondary;
+  color: #000;
+  // color: v.$red-2;
+  font-weight: 600;
+  background: #FF3E00;
+}

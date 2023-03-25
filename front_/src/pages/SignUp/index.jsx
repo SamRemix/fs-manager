@@ -2,6 +2,8 @@ import { memo, useState } from 'react'
 
 import useFetch from '../../hooks/useFetch'
 
+import Input from '../../components/Input'
+
 const SignUp = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -20,8 +22,10 @@ const SignUp = () => {
 
   return (
     <section className="container">
+      <h1>Sign up</h1>
+
       <form onSubmit={signup}>
-        <input
+        <Input
           placeholder="Name"
           value={name}
           onChange={({ target }) => {
@@ -30,7 +34,7 @@ const SignUp = () => {
           autoFocus
         />
 
-        <input
+        <Input
           placeholder="Email"
           value={email}
           onChange={({ target }) => {
@@ -38,7 +42,7 @@ const SignUp = () => {
           }}
         />
 
-        <input
+        <Input
           type="password"
           placeholder="Password"
           value={password}
