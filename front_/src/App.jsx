@@ -29,7 +29,7 @@ const App = () => {
         <Route path="/sign-up" element={!token ? <SignUp /> : <Navigate to="/" />} />
         <Route path="/log-in" element={!token ? <LogIn /> : <Navigate to="/" />} />
 
-        <Route path="/user-profile" element={user && <UserProfile />} />
+        <Route path="/user-profile/:id" element={user && <UserProfile />} />
       </Routes>
     </>
   )

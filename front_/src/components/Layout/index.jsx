@@ -59,8 +59,8 @@ const Layout = () => {
                   <p className="link-title">{logOut.name}</p>
                 </div>
               </li>
-              <li className={userProfile.path === pathname ? 'item-active' : 'item'} key={userProfile.id}>
-                <NavLink to={userProfile.path} className="link">
+              <li className={`${userProfile.path}/${user._id}` === pathname ? 'item-active' : 'item'} key={userProfile.id}>
+                <NavLink to={`${userProfile.path}/${user._id}`} className="link">
                   {/* icon will be replaced by the profile picture */}
                   {displayIcon(userProfile.icon, { className: 'link-icon' })}
 
