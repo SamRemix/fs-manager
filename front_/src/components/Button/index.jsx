@@ -1,7 +1,6 @@
 import './styles.scss'
 
 import { memo } from 'react'
-
 import { useNavigate } from 'react-router-dom'
 
 import displayIcon from '../../utils/displayIcon'
@@ -12,11 +11,11 @@ const Button = ({ children, className = 'primary', onClick = null }) => {
   return (
     <button
       className={className}
-      onClick={className === 'previous' ? () => navigate(-1) : onClick}>
-      {className === 'previous' ? (
+      onClick={className === 'back' ? () => navigate(-1) : onClick}>
+      {className === 'back' ? (
         <>
           {displayIcon('ArrowLongLeftIcon', { width: '2em' })}
-          Previous
+          Back
         </>
       ) : children}
     </button>

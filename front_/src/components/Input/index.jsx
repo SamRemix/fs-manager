@@ -2,11 +2,7 @@ import './styles.scss'
 
 import { memo, useState } from 'react'
 
-import {
-  MagnifyingGlassIcon, // Search icon
-  EyeSlashIcon, // Hide password icon
-  EyeIcon // Display password icon
-} from '@heroicons/react/24/outline'
+import displayIcon from '../../utils/displayIcon'
 
 const Input = ({
   type = 'text',
@@ -15,7 +11,7 @@ const Input = ({
   checked,
   onChange,
   maxLength,
-  focus,
+  autoFocus,
   error,
   setPrefix,
   key,
@@ -36,14 +32,12 @@ const Input = ({
             value={error ? '' : value}
             onChange={onChange}
             maxLength={maxLength}
-            autoFocus={focus}
+            autoFocus={autoFocus}
             key={key}
           />
 
           {maxLength && (
-            <p className="remaining">
-              {maxLength - value.length} remaining character{value.length < maxLength - 1 && 's'}.
-            </p>
+            <p className="remaining">remaining: {maxLength - value.length}</p>
           )}
         </>
       )}
@@ -57,21 +51,8 @@ const Input = ({
         />
       )}
 
-      {type === 'checkbox' && (
-        <label className={checked ? 'checkbox-checked' : 'checkbox'}>
-          <input
-            type={type}
-            checked={checked}
-            onChange={onChange}
-            key={key}
-          />
-
-          <p>{placeholder}</p>
-        </label>
-      )}
-
-      {type === 'radio' && (
-        <label className={checked ? 'radio-checked' : 'radio'}>
+      {type === ('checkbox' || 'radio' || 'range') && (
+        <label className={checked ? `${type}-checked` : type}>
           <input
             type={type}
             name={name}
@@ -79,24 +60,12 @@ const Input = ({
             checked={checked}
             onChange={onChange}
             key={key}
-          />
-
-          <p>{placeholder}</p>
-        </label>
-      )}
-
-      {type === 'range' && (
-        <label className="range">
-          <input
-            type={type}
-            name={name}
             min={min}
             max={max}
             step={step}
-            value={value}
-            onChange={onChange}
           />
-          {value}%
+
+          {type === 'range' ? <p>{value}%</p> : <p>{placeholder}</p>}
         </label>
       )}
 
@@ -106,12 +75,13 @@ const Input = ({
             type="text"
             placeholder="Search"
             value={value}
-            onChange={e => setPrefix(e.target.value)}
+            onChange={({ target }) => setPrefix(target.value)}
             key={key}
-            ref={focus}
+            ref={autoFocus}
           />
+
           <div className="search-icon">
-            <MagnifyingGlassIcon width="1.5em" />
+            {displayIcon('MagnifyingGlassIcon')}
           </div>
         </>
       )}
@@ -119,20 +89,17 @@ const Input = ({
       {type === 'password' && (
         <>
           <input
-            type={isDisplay ? 'text' : 'password'}
+            type={isDisplay ? 'text' : type}
             placeholder={placeholder}
             value={value}
             onChange={onChange}
             key={key}
           />
+
           <div
             className="eye-icon"
             onClick={() => setIsDisplay(!isDisplay)}>
-            {isDisplay ? (
-              <EyeSlashIcon width="1.5em" />
-            ) : (
-              <EyeIcon width="1.5em" />
-            )}
+            {displayIcon(isDisplay ? 'EyeSlashIcon' : 'EyeIcon')}
           </div>
         </>
       )}

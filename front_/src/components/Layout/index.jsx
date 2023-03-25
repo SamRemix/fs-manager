@@ -67,8 +67,8 @@ const Layout = () => {
         </ul>
       </header>
 
-      <div className="previous">
-        <Button className="previous" />
+      <div className="previous-page">
+        <Button className="back" />
       </div>
 
       <nav className="navbar">
