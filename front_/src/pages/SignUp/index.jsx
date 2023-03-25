@@ -3,6 +3,7 @@ import { memo, useState } from 'react'
 import useFetch from '../../hooks/useFetch'
 
 import Input from '../../components/Input'
+import Button from '../../components/Button'
 
 const SignUp = () => {
   const [name, setName] = useState('')
@@ -51,7 +52,7 @@ const SignUp = () => {
           }}
         />
 
-        <button>Sign up</button>
+        <Button className="submit">Sign up</Button>
 
         {error && (
           <p>{error}</p>

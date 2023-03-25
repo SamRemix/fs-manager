@@ -4,29 +4,22 @@ import { memo } from 'react'
 
 import { useNavigate } from 'react-router-dom'
 
-import { ArrowLongLeftIcon } from '@heroicons/react/24/outline'
+import displayIcon from '../../utils/displayIcon'
 
-const Button = ({ children, className = 'primary', event = null }) => {
+const Button = ({ children, className = 'primary', onClick = null }) => {
   const navigate = useNavigate()
-  return (
-    <>
-      {className !== 'back' && (
-        <button
-          {...className}
-          onClick={event}>
-          {children}
-        </button>
-      )}
 
-      {className === 'back' && (
-        <button
-          className="secondary"
-          onClick={() => navigate(-1)}>
-          <ArrowLongLeftIcon width="2em" />
-          Back
-        </button>
-      )}
-    </>
+  return (
+    <button
+      className={className}
+      onClick={className === 'previous' ? () => navigate(-1) : onClick}>
+      {className === 'previous' ? (
+        <>
+          {displayIcon('ArrowLongLeftIcon', { width: '2em' })}
+          Previous
+        </>
+      ) : children}
+    </button>
   )
 }
 

@@ -6,12 +6,12 @@
   display: flex;
   align-items: center;
   gap: .75rem;
-  padding: 0 1.25rem;
+  padding: 0 1rem;
   width: fit-content;
-  height: 2.25rem;
+  height: 2.5rem;
   background: unset;
   border-radius: .5rem;
-  color: #000;
+  // color: #000;
   white-space: nowrap;
   position: relative;
   overflow: hidden;
@@ -20,41 +20,28 @@
 
 .primary {
   @include button-style;
-  background: #DBFF73;
-  // box-shadow: v.$box-shadow-lg;
+  background: #1D8AB1;
+  color: #fff;
   font-weight: 600;
-  // transition: box-shadow .1s;
-
-  // &:hover {
-  //   box-shadow: v.$box-shadow-md;
-
-  //   &:active {
-  //     box-shadow: v.$box-shadow-sm;
-  //   }
-  // }
-
-  &:disabled {
-    opacity: .6;
-  }
 }
 
-.secondary {
+.previous {
   @include button-style;
-  background: #ccc;
-  box-shadow: 0 0 0 .125rem #000;
-  // border: var(--task-border);
+  background: #3c3c3c;
   color: #fff;
 }
 
-.form-button {
+.submit {
   @extend .primary;
-  margin-left: 2rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  // margin-right: 4rem;
 }
 
 .delete {
-  @extend .secondary;
-  color: #000;
-  // color: v.$red-2;
-  font-weight: 600;
+  @include button-style;
   background: #FF3E00;
+  color: #000;
+  font-weight: 600;
 }
