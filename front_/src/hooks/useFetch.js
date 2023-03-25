@@ -23,12 +23,10 @@ const useFetch = ({ method, url }) => {
     try {
       const { data } = await instance[method](url, body)
 
-      setResponse(data)
-
       // reusable dispatch function for any context
       const exec = dispatch => (
         dispatch({
-          // 'GET' || 'POST' || 'PATCH' || 'DELETE'
+          // type: 'GET' || 'POST' || 'PATCH' || 'DELETE'
           type: method.toUpperCase(),
           payload: data
         })
@@ -36,9 +34,12 @@ const useFetch = ({ method, url }) => {
 
       exec({
         users: setUsers,
+        auth: null
       }[url.split('/')[1]])
-    } catch (error) {
-      setError(error)
+
+      setResponse(data)
+    } catch ({ response }) {
+      setError(response.data.error)
     }
   }
 
