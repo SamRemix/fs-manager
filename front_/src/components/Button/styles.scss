@@ -1,8 +1,4 @@
-// @use '../../styles/vars' as v;
-// @use '../../styles/mixins' as mix;
-
 @mixin button-style {
-  // @include mix.flex-align-gap(.75rem);
   display: flex;
   align-items: center;
   gap: .75rem;
@@ -11,7 +7,6 @@
   height: 2.5rem;
   background: unset;
   border-radius: .5rem;
-  // color: #000;
   white-space: nowrap;
   position: relative;
   overflow: hidden;
@@ -36,12 +31,11 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  // margin-right: 4rem;
 }
 
-.delete {
-  @include button-style;
-  background: #FF3E00;
-  color: #000;
-  font-weight: 600;
-}
+// .delete {
+//   @include button-style;
+//   background: #FF3E00;
+//   color: #000;
+//   font-weight: 600;
+// }
