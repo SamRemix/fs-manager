@@ -28,14 +28,15 @@ const useFetch = ({ method, url }) => {
       // reusable dispatch function for any context
       const exec = dispatch => (
         dispatch({
+          // 'GET' || 'POST' || 'PATCH' || 'DELETE'
           type: method.toUpperCase(),
           payload: data
         })
       )
 
-      return {
-        users: () => exec(setUsers)
-      }[url.split('/')[1]]()
+      exec({
+        users: setUsers,
+      }[url.split('/')[1]])
     } catch (error) {
       setError(error)
     }
