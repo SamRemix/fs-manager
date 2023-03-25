@@ -5,6 +5,7 @@ import { Routes, Route, useLocation, Navigate } from 'react-router-dom'
 import Home from './pages/Home'
 import MyFiles from './pages/MyFiles'
 import SignUp from './pages/SignUp'
+import LogIn from './pages/LogIn'
 
 // import components
 import Layout from './components/Layout'
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="/my-files" element={<MyFiles />} />
 
         <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/log-in" element={<LogIn />} />
       </Routes>
     </>
   )

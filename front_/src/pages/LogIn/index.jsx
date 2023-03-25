@@ -2,40 +2,31 @@ import { memo, useState } from 'react'
 
 import useFetch from '../../hooks/useFetch'
 
-const SignUp = () => {
-  const [name, setName] = useState('')
+const LogIn = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
   const { error, fetchData } = useFetch({
     method: 'post',
-    url: '/auth/signup'
+    url: '/auth/login'
   })
 
-  const signup = e => {
+  const login = e => {
     e.preventDefault()
 
-    fetchData({ name, email, password })
+    fetchData({ email, password })
   }
 
   return (
     <section className="container">
-      <form onSubmit={signup}>
-        <input
-          placeholder="Name"
-          value={name}
-          onChange={({ target }) => {
-            setName(target.value)
-          }}
-          autoFocus
-        />
-
+      <form onSubmit={login}>
         <input
           placeholder="Email"
           value={email}
           onChange={({ target }) => {
             setEmail(target.value)
           }}
+          autoFocus
         />
 
         <input
@@ -47,7 +38,7 @@ const SignUp = () => {
           }}
         />
 
-        <button>Sign up</button>
+        <button>Log in</button>
 
         {error && (
           <p>{error}</p>
@@ -57,4 +48,4 @@ const SignUp = () => {
   )
 }
 
-export default memo(SignUp)
+export default memo(LogIn)

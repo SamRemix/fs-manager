@@ -12,8 +12,6 @@ import { links, authLinks, logOut } from './links'
 const Layout = () => {
   const { token, dispatch } = useContext(AuthContext)
 
-  console.log(token)
-
   const { pathname } = useLocation()
 
   // checks if links includes pathname and then returns 'focus' in the jsx
