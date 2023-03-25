@@ -1,21 +1,27 @@
-import { memo, useContext } from 'react'
+import { memo, useState, useEffect, useContext } from 'react'
 import { useParams } from 'react-router-dom'
 
-import { AuthContext } from '../../contexts/AuthContext'
+import { UsersContext } from '../../contexts/UsersContext'
 
 const UserProfile = () => {
-  const { user } = useContext(AuthContext)
+  const [user, setUser] = useState(null)
+
+  const { users } = useContext(UsersContext)
 
   const { id } = useParams()
-  console.log(id);
-  // const { user } = JSON.parse(localStorage.getItem('auth'))
 
-  const { name, email } = user
+  useEffect(() => {
+    setUser(users?.find(({ _id }) => _id === id))
+  }, [users])
 
   return (
     <div>
-      <p>{name}</p>
-      <p>{email}</p>
+      {user && (
+        <div>
+          <p>{user.name}</p>
+          <p>{user.email}</p>
+        </div>
+      )}
     </div>
   )
 }

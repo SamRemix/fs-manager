@@ -70,7 +70,9 @@ const Layout = () => {
             </>
           )}
 
-          {exists([...isLogOut, userProfile]) && <div className="focus" />}
+          {(exists(isLogOut) || `${userProfile.path}/${user._id}` === pathname) && (
+            <div className="focus" />
+          )}
         </ul>
       </header>
 

@@ -1,4 +1,6 @@
-import { memo } from 'react'
+import { memo, useContext } from 'react'
+
+import { UsersContext } from '../../contexts/UsersContext'
 
 import useFetch from '../../hooks/useFetch'
 
@@ -17,10 +19,7 @@ const User = ({ name, _id }) => {
 }
 
 const Home = () => {
-  const { response: users } = useFetch({
-    method: 'get',
-    url: '/users'
-  })
+  const { users } = useContext(UsersContext)
 
   return (
     <section className="container">

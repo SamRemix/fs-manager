@@ -13,10 +13,14 @@ import Layout from './components/Layout'
 
 import { AuthContext } from './contexts/AuthContext'
 
+import useFetch from './hooks/useFetch'
+
 const App = () => {
   const location = useLocation()
 
   const { token, user } = useContext(AuthContext)
+
+  useFetch({ method: 'get', url: '/users' })
 
   return (
     <>
