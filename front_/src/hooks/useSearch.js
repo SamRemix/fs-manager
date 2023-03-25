@@ -14,7 +14,7 @@ const useSearch = () => {
 
   const search = data => (
     data.filter(({ name, email }) => (
-      searchBy(name) || searchBy(email)
+      searchBy(name) || searchBy(email.split('@')[0])
     ))
   )
 

@@ -14,20 +14,33 @@ const SearchBar = () => {
 
   const { prefix, setPrefix, search } = useSearch()
 
+  const { user } = JSON.parse(localStorage.getItem('auth'))
+
   return (
     <div className="searchbar-container">
       <Input type="search" value={prefix} setPrefix={setPrefix} />
 
       {prefix && (
         <div className="results">
-          {users && search(users).map(({ _id, name, email }) => (
-            <div className="results-item">
-              <Link key={_id} to={`user-profile/${_id}`} onClick={() => setPrefix('')}>
+          {search(users).map(({ _id, name, email }) => (
+            // don't display your own account
+            user.name !== name && (
+              <Link
+                key={_id}
+                className="results-item"
+                to={`user-profile/${_id}`}
+                onClick={() => setPrefix('')}>
                 <p className="results-item-name">{name}</p>
                 <p className="results-item-email">{email}</p>
               </Link>
-            </div>
+            )
           ))}
+
+          {search(users).length === 0 && (
+            <div className="results-item not-found">
+              <p className="results-item-name">Not found</p>
+            </div>
+          )}
         </div>
       )}
     </div>
