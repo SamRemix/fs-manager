@@ -3,34 +3,8 @@
 .modal {
   @include mix.flex-center;
   position: fixed;
+  inset: 0;
   z-index: 3;
-
-  @mixin content($width, $bg: #fff, $radius, $color: #000) {
-    width: $width;
-    background: $bg;
-    border-radius: $radius;
-    color: $color;
-  }
-
-  &.default {
-    inset: 0;
-
-    .modal-content {
-      @include content($width: clamp(60%, 700px, 80%), $radius: 1rem);
-      @include mix.flex-center;
-    }
-  }
-
-  &.toast {
-    inset: auto auto 2rem 2rem;
-
-    .modal-content {
-      @include content(100%, #3c3c3c, .5rem, #fff);
-      @include mix.flex-gap(1rem);
-      align-items: center;
-      justify-content: space-between;
-    }
-  }
 
   &-backdrop {
     background: rgba($color: #000, $alpha: .6);
@@ -44,6 +18,10 @@
 
   &-content {
     padding: 1rem;
+    width: clamp(60%, 700px, 80%);
+    background: #fff;
+    border-radius: 1rem;
+    @include mix.flex-center;
     z-index: 1;
 
     .close-button {

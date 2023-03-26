@@ -4,9 +4,9 @@ import { memo } from 'react'
 
 import displayIcon from '../../utils/displayIcon'
 
-const Modal = ({ children, type = 'default', onClick, timeOut = false }) => {
+const Modal = ({ children, onClick }) => {
   return (
-    <div className={`modal ${type}`}>
+    <div className="modal">
       <div className="modal-backdrop" onClick={onClick} />
       <div className="modal-content">
         {displayIcon('XMarkIcon', {
