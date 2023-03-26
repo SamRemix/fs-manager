@@ -14,7 +14,7 @@ const Button = ({ children, className = 'primary', onClick = null }) => {
       onClick={className === 'back' ? () => navigate(-1) : onClick}>
       {className === 'back' ? (
         <>
-          {displayIcon('ArrowLongLeftIcon', { width: '2em' })}
+          {displayIcon('ArrowLongLeftIcon', { width: '2rem' })}
           Back
         </>
       ) : children}

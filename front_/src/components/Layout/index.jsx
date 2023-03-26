@@ -9,6 +9,7 @@ import useLogOut from '../../hooks/useLogOut'
 
 import SearchBar from '../SearchBar'
 import Button from '../Button'
+import Modal from '../Modal'
 
 import displayIcon from '../../utils/displayIcon'
 
@@ -82,6 +83,14 @@ const Layout = () => {
       <div className="previous-page">
         <Button className="back" />
       </div>
+
+      <Modal type="toast">
+        <p>Successfully logged in !</p>
+      </Modal>
+
+      {/* <Modal>
+        <p>test2</p>
+      </Modal> */}
 
       <nav className="navbar">
         <ul className="navbar-items">
