@@ -1,5 +1,6 @@
 @use './_reset.css';
 @use './vars' as v;
+@use './mixins' as mix;
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600;700;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cormorant:wght@300;400;500;600;700&display=swap');
@@ -32,9 +33,7 @@ body {
     padding: v.$root-padding;
     height: 100vh;
     background: v.$root-background;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include mix.flex-center;
     position: relative;
     overflow: hidden scroll;
 
@@ -59,21 +58,15 @@ body {
 
     .container {
       margin: 6rem 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 2rem;
+      @include mix.flex-column-center-gap(2rem);
 
       h1 {
         font-size: 250%;
       }
 
       form {
-        display: flex;
+        @include mix.flex-column-gap(1rem);
         align-items: center;
-        flex-direction: column;
-        gap: 1rem;
       }
     }
   }

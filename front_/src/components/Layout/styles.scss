@@ -1,4 +1,5 @@
 @use '../../styles/vars' as v;
+@use '../../styles/mixins' as mix;
 
 // max items number (2 in header, 5 in navbar)
 $itemsNumber: 5;
@@ -13,8 +14,7 @@ $itemsNumber: 5;
 
   &-items {
     padding: .75rem v.$nav-horizontal-padding;
-    display: flex;
-    gap: 2rem;
+    @include mix.flex-gap(2rem);
     position: relative;
 
     .item {
@@ -71,9 +71,7 @@ $itemsNumber: 5;
         padding: .5rem;
         width: 100%;
         border-radius: .5rem;
-        display: flex;
-        justify-content: center;
-        gap: .75rem;
+        @include mix.flex-center;
         position: relative;
 
         &-icon {

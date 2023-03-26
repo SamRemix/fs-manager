@@ -1,3 +1,5 @@
+@use '../../styles/mixins' as mix;
+
 .searchbar-container {
   position: relative;
 
@@ -6,9 +8,7 @@
     width: calc(100% + 1rem);
     background: #888;
     border-radius: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: .5rem;
+    @include mix.flex-column-gap(.5rem);
     position: absolute;
     inset: -.5rem -.5rem auto;
     z-index: -1;
@@ -18,9 +18,7 @@
       background: #fff;
       border-radius: .5rem;
       font-size: 90%;
-      display: flex;
-      flex-direction: column;
-      gap: .25rem;
+      @include mix.flex-column-gap(.25rem);
       position: relative;
 
       &.not-found {

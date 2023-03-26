@@ -1,12 +1,13 @@
+@use '../../styles/mixins' as mix;
+
 @mixin button-style {
-  display: flex;
-  align-items: center;
-  gap: .75rem;
   padding: 0 1rem;
   width: fit-content;
   height: 2.5rem;
   background: unset;
   border-radius: .5rem;
+  @include mix.flex-gap(.75rem);
+  align-items: center;
   white-space: nowrap;
   position: relative;
   overflow: hidden;
