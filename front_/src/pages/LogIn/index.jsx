@@ -11,7 +11,8 @@ const LogIn = () => {
 
   const { error, fetchData } = useFetch({
     method: 'post',
-    url: '/auth/login'
+    url: '/auth/login',
+    type: 'LOG_IN'
   })
 
   const login = e => {
@@ -31,7 +32,7 @@ const LogIn = () => {
           onChange={({ target }) => {
             setEmail(target.value)
           }}
-          focus={true}
+          autoFocus={true}
         />
 
         <Input

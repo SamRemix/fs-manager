@@ -2,21 +2,31 @@ import { createContext, useReducer, useEffect } from 'react'
 
 const init = {
   token: null,
-  user: null
+  user: null,
+  message: ''
 }
 
 const Reducer = (state = init, { type, payload }) => {
   switch (type) {
-    case 'POST':
+    case 'SIGN_UP':
       return {
         token: payload.token,
-        user: payload.user
+        user: payload.user,
+        message: 'Successfully signed up!'
+      }
+
+    case 'LOG_IN':
+      return {
+        token: payload.token,
+        user: payload.user,
+        message: 'Successfully logged in!'
       }
 
     case 'LOG_OUT':
       return {
         token: null,
-        user: null
+        user: null,
+        message: 'Successfully logged out'
       }
 
     default:
@@ -36,7 +46,7 @@ export const AuthProvider = ({ children }) => {
       return
     }
 
-    dispatch({ type: 'POST', payload: JSON.parse(storage) })
+    dispatch({ type: 'LOG_IN', payload: JSON.parse(storage) })
   }, [storage])
 
   console.log('AUTH_CONTEXT', state)

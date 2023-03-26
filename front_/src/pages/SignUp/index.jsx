@@ -12,7 +12,8 @@ const SignUp = () => {
 
   const { error, fetchData } = useFetch({
     method: 'post',
-    url: '/auth/signup'
+    url: '/auth/signup',
+    type: 'SIGN_UP'
   })
 
   const signup = e => {

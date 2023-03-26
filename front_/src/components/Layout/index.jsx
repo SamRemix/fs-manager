@@ -16,7 +16,7 @@ import displayIcon from '../../utils/displayIcon'
 import { links, isLogOut } from './links'
 
 const Layout = () => {
-  const { token, user } = useContext(AuthContext)
+  const { token, user, message } = useContext(AuthContext)
 
   const { pathname } = useLocation()
 
@@ -83,14 +83,6 @@ const Layout = () => {
       <div className="previous-page">
         <Button className="back" />
       </div>
-
-      <Modal type="toast">
-        <p>Successfully logged in !</p>
-      </Modal>
-
-      {/* <Modal>
-        <p>test2</p>
-      </Modal> */}
 
       <nav className="navbar">
         <ul className="navbar-items">

@@ -1,19 +1,16 @@
 import { useState, useEffect, useContext } from 'react'
-import { useNavigate } from 'react-router-dom'
 
 import { AuthContext } from '../contexts/AuthContext'
 import { UsersContext } from '../contexts/UsersContext'
 
 import axios from 'axios'
 
-const useFetch = ({ method, url }) => {
+const useFetch = ({ method, url, type = null }) => {
   const [response, setResponse] = useState(null)
   const [error, setError] = useState('')
 
   const { dispatch: setToken } = useContext(AuthContext)
   const { dispatch: setUsers } = useContext(UsersContext)
-
-  const navigate = useNavigate()
 
   // create axios instance to set the API as base url
   const instance = axios.create({ baseURL: 'http://localhost:4000' })
@@ -32,7 +29,7 @@ const useFetch = ({ method, url }) => {
       const exec = dispatch => (
         dispatch({
           // type: 'GET' || 'POST' || 'PATCH' || 'DELETE'
-          type: method.toUpperCase(),
+          type: type || method.toUpperCase(),
           payload: data
         })
       )
@@ -44,7 +41,6 @@ const useFetch = ({ method, url }) => {
 
       if (url.startsWith('/auth')) {
         localStorage.setItem('auth', JSON.stringify(data))
-        navigate('/')
       }
 
       setResponse(data)
