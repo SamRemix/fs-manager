@@ -1,3 +1,5 @@
+@use '../../styles/vars' as v;
+
 // max items number (2 in header, 5 in navbar)
 $itemsNumber: 5;
 
@@ -10,13 +12,13 @@ $itemsNumber: 5;
   z-index: 2;
 
   &-items {
-    padding: .75rem 1rem;
+    padding: .75rem v.$nav-horizontal-padding;
     display: flex;
     gap: 2rem;
     position: relative;
 
     .item {
-      width: 4rem;
+      width: v.$nav-item-width;
       border-radius: .5rem;
       display: flex;
       justify-content: center;
@@ -38,7 +40,7 @@ $itemsNumber: 5;
         // set position of 'focus' based on active element (+8rem at each item)
         @for $i from 1 through $itemsNumber {
           &:nth-child(#{$i + 1})~.focus {
-            transform: translateX($i * 6rem);
+            transform: translateX($i * calc(v.$nav-item-width + 2rem));
           }
         }
       }
@@ -54,12 +56,12 @@ $itemsNumber: 5;
       }
 
       &+.focus {
-        width: 4rem;
+        width: v.$nav-item-width;
         background: #dbff73;
         border: 1px solid #888;
         border-radius: .5rem;
         position: absolute;
-        inset: .75rem 1rem;
+        inset: .75rem v.$nav-horizontal-padding;
         pointer-events: none;
         z-index: -1;
         transition: .4s;
@@ -96,26 +98,26 @@ $itemsNumber: 5;
   }
 }
 
+$header-height: 4rem;
+$header-inset: calc(v.$root-padding / 2);
+
 .header {
   @include container;
   padding: 0 1rem;
-  width: calc(100% - 1rem);
-  height: 4rem;
+  width: calc(100% - $header-inset);
+  height: $header-height;
   align-items: center;
   justify-content: space-between;
-  inset: .5rem auto auto .5rem;
+  inset: calc($header-inset / 2) auto auto calc($header-inset / 2);
 
   &-title {
-    font-family: 'Merchant';
-    font-size: 250%;
+    font-size: 300%;
 
     span {
-      font-variation-settings: 'wght' 400, 'wdth' 90;
       transition: .4s;
 
       &:last-child {
         color: #1D8AB1;
-        font-variation-settings: 'wght' 900, 'wdth' 85;
       }
     }
   }
@@ -133,14 +135,14 @@ $itemsNumber: 5;
 
 .previous-page {
   position: fixed;
-  inset: 5.5rem auto auto 2rem;
+  inset: calc(1rem + $header-height + $header-inset / 2) auto auto calc(1rem + v.$root-padding / 2);
 }
 
 .navbar {
   @include container;
   justify-content: center;
   // $itemsNumber * 10rem = navbar width, divide it by 2 to center it
-  inset: auto auto 2rem calc(50% - calc($itemsNumber * 6rem / 2));
+  inset: auto auto calc(1rem + $header-inset) calc(50% - calc($itemsNumber * 6rem / 2));
 
   &-items {
     .item {

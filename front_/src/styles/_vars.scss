@@ -1,0 +1,29 @@
+// AFFECTS:
+// #root: padding
+// #root::before: width & height & box-shadow & border-radius & inset
+// .header: width & inset
+// .previous-page: inset
+// .navbar: inset
+$root-padding: 2rem;
+
+// AFFECTS:
+// body: background
+// #root::before: box-shadow
+$window-border-color: #1b1b1b;
+
+// AFFECTS:
+// #root: background
+$root-background: #e6e6e6;
+
+// AFFECTS:
+// .header-items: padding
+// .navbar-items: padding
+// .focus: inset
+$nav-horizontal-padding: 1rem;
+
+// AFFECTS:
+// .header-items .item: width
+// .navbar-items .item: width
+// .focus: width
+// .focus: translateX
+$nav-item-width: 4rem;

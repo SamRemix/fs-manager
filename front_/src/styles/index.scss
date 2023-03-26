@@ -1,20 +1,8 @@
 @use './_reset.css';
+@use './vars' as v;
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600;700;800&display=swap');
-
-@font-face {
-  font-family: 'Quicksand';
-  src: url('../../fonts/Quicksand-VariableFont_wght.woff2') format('woff2-variations');
-  font-weight: 300 700;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Merchant';
-  src: url('../../fonts/Merchant-VF.woff2') format('woff2-variations');
-  font-weight: 100 900;
-  font-display: swap;
-}
+@import url('https://fonts.googleapis.com/css2?family=Cormorant:wght@300;400;500;600;700&display=swap');
 
 * {
   &::-webkit-scrollbar {
@@ -37,29 +25,36 @@
 }
 
 body {
-  background: #1b1b1b;
+  background: v.$window-border-color;
   font-family: 'Poppins';
 
   #root {
-    padding: 2rem;
+    padding: v.$root-padding;
     height: 100vh;
-    background: #e6e6e6;
+    background: v.$root-background;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     overflow: hidden scroll;
 
+    $border-inset: calc(v.$root-padding / 2);
+
     &::before {
       content: '';
-      width: calc(100% - 2rem);
-      height: calc(100% - 2rem);
-      box-shadow: 0 0 0 2rem #1b1b1b;
-      border-radius: 1rem;
+      width: calc(100% - v.$root-padding);
+      height: calc(100% - v.$root-padding);
+      box-shadow: 0 0 0 v.$root-padding v.$window-border-color;
+      border-radius: $border-inset;
       position: fixed;
-      inset: 1rem auto auto 1rem;
+      inset: $border-inset auto auto $border-inset;
       z-index: 1;
       pointer-events: none;
+    }
+
+    h1 {
+      font-family: 'Cormorant';
+      font-weight: 700;
     }
 
     .container {
@@ -71,9 +66,7 @@ body {
       gap: 2rem;
 
       h1 {
-        font-family: 'Merchant';
-        font-size: 200%;
-        font-variation-settings: 'wght' 400, 'wdth' 90;
+        font-size: 250%;
       }
 
       form {
