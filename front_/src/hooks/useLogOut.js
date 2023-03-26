@@ -11,7 +11,7 @@ const useLogOut = () => {
   const disconnect = () => {
     dispatch({ type: 'LOG_OUT' })
 
-    localStorage.removeItem('token')
+    localStorage.removeItem('auth')
 
     navigate('/log-in')
   }

@@ -14,7 +14,7 @@ const SearchBar = () => {
 
   const { prefix, setPrefix, search } = useSearch()
 
-  const { user } = JSON.parse(localStorage.getItem('auth'))
+  const auth = JSON.parse(localStorage.getItem('auth'))
 
   return (
     <div className="searchbar-container">
@@ -24,7 +24,7 @@ const SearchBar = () => {
         <div className="results">
           {search(users).map(({ _id, name, email }) => (
             // don't display your own account
-            user.name !== name && (
+            auth?.user.name !== name && (
               <Link
                 key={_id}
                 className="results-item"
