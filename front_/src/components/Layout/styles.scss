@@ -1,92 +1,87 @@
 @use '../../styles/vars' as v;
 @use '../../styles/mixins' as mix;
 
-// max items number (2 in header, 5 in navbar)
-$itemsNumber: 5;
-
 @mixin container {
   background: #fff;
   box-shadow: 0 2px 4px rgba($color: #000, $alpha: .4);
   border-radius: 1rem;
-  display: flex;
-  position: fixed;
   z-index: 2;
+}
 
-  &-items {
-    padding: .75rem v.$nav-horizontal-padding;
-    @include mix.flex-gap(2rem);
+@mixin items {
+  padding: .75rem v.$nav-horizontal-padding;
+  @include mix.flex-gap(2rem);
+  position: relative;
+
+  .item {
+    width: v.$nav-item-width;
+    border-radius: .5rem;
+    display: flex;
+    justify-content: center;
     position: relative;
 
-    .item {
+    &-active,
+    &:hover {
+      .link {
+        .link-title {
+          transform: translate(-50%, 0);
+          opacity: 1;
+        }
+      }
+    }
+
+    &-active {
+      @extend .item;
+
+      // set position of 'focus' based on active element (+8rem at each item)
+      @for $i from 1 through 10 {
+        &:nth-child(#{$i + 1})~.focus {
+          transform: translateX($i * calc(v.$nav-item-width + 2rem));
+        }
+      }
+    }
+
+    // add separator between items
+    &:not(li:last-of-type)::before {
+      content: '';
+      width: 1px;
+      height: 80%;
+      background: #888;
+      position: absolute;
+      inset: 10% auto auto calc(100% + 1rem);
+    }
+
+    &+.focus {
       width: v.$nav-item-width;
+      background: #dbff73;
+      border: 1px solid #888;
       border-radius: .5rem;
-      display: flex;
-      justify-content: center;
+      position: absolute;
+      inset: .75rem v.$nav-horizontal-padding;
+      pointer-events: none;
+      z-index: -1;
+      transition: .4s;
+    }
+
+    .link {
+      padding: .5rem;
+      width: 100%;
+      border-radius: .5rem;
+      @include mix.flex-center;
       position: relative;
 
-      &-active,
-      &:hover {
-        .link {
-          .link-title {
-            transform: translate(-50%, 0);
-            opacity: 1;
-          }
-        }
-      }
-
-      &-active {
-        @extend .item;
-
-        // set position of 'focus' based on active element (+8rem at each item)
-        @for $i from 1 through $itemsNumber {
-          &:nth-child(#{$i + 1})~.focus {
-            transform: translateX($i * calc(v.$nav-item-width + 2rem));
-          }
-        }
-      }
-
-      // add separator between items
-      &:not(li:last-of-type)::before {
-        content: '';
-        width: 1px;
-        height: 80%;
-        background: #888;
-        position: absolute;
-        inset: 10% auto auto calc(100% + 1rem);
-      }
-
-      &+.focus {
-        width: v.$nav-item-width;
-        background: #dbff73;
-        border: 1px solid #888;
-        border-radius: .5rem;
-        position: absolute;
-        inset: .75rem v.$nav-horizontal-padding;
-        pointer-events: none;
-        z-index: -1;
-        transition: .4s;
-      }
-
-      .link {
+      &-title {
         padding: .5rem;
-        width: 100%;
+        width: fit-content;
+        background: #3c3c3c;
         border-radius: .5rem;
-        @include mix.flex-center;
-        position: relative;
-
-        &-title {
-          padding: .5rem;
-          width: fit-content;
-          background: #3c3c3c;
-          border-radius: .5rem;
-          color: #fff;
-          position: absolute;
-          white-space: nowrap;
-          transform: translate(-50%, 1rem);
-          opacity: 0;
-          pointer-events: none;
-          transition: .2s;
-        }
+        color: #fff;
+        position: absolute;
+        white-space: nowrap;
+        transform: translate(-50%, 1rem);
+        opacity: 0;
+        pointer-events: none;
+        transition: .2s;
       }
     }
   }
@@ -96,12 +91,14 @@ $header-height: 4rem;
 $header-inset: calc(v.$root-padding / 2);
 
 .header {
-  @include container;
   padding: 0 1rem;
   width: calc(100% - $header-inset);
   height: $header-height;
+  @include container;
+  display: flex;
   align-items: center;
   justify-content: space-between;
+  position: fixed;
   inset: calc($header-inset / 2) auto auto calc($header-inset / 2);
 
   &-title {
@@ -117,6 +114,8 @@ $header-inset: calc(v.$root-padding / 2);
   }
 
   &-items {
+    @include items;
+
     .item {
       .link {
         &-title {
@@ -133,12 +132,16 @@ $header-inset: calc(v.$root-padding / 2);
 }
 
 .navbar {
-  @include container;
+  display: flex;
   justify-content: center;
-  // $itemsNumber * 10rem = navbar width, divide it by 2 to center it
-  inset: auto auto calc(1rem + $header-inset) calc(50% - calc($itemsNumber * 6rem / 2));
+  position: fixed;
+  inset: auto 0 2rem;
 
   &-items {
+    @include container;
+    @include items;
+    @include mix.flex-gap(2rem);
+
     .item {
       .link {
         &-title {
