@@ -3,10 +3,14 @@ import { useNavigate } from 'react-router-dom'
 
 import { AuthContext } from '../contexts/AuthContext'
 
+import useMessages from './useMessages'
+
 const useLogOut = () => {
   const { dispatch } = useContext(AuthContext)
 
   const navigate = useNavigate()
+
+  const { add } = useMessages()
 
   const disconnect = () => {
     dispatch({ type: 'LOG_OUT' })
@@ -14,6 +18,8 @@ const useLogOut = () => {
     localStorage.removeItem('auth')
 
     navigate('/log-in')
+
+    add('Logged out')
   }
 
   return { disconnect }

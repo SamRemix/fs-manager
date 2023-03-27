@@ -3,6 +3,8 @@ import { useState, useEffect, useContext } from 'react'
 import { AuthContext } from '../contexts/AuthContext'
 import { UsersContext } from '../contexts/UsersContext'
 
+import useMessages from './useMessages'
+
 import axios from 'axios'
 
 const useFetch = ({ method, url, type = null }) => {
@@ -11,6 +13,9 @@ const useFetch = ({ method, url, type = null }) => {
 
   const { dispatch: setToken } = useContext(AuthContext)
   const { dispatch: setUsers } = useContext(UsersContext)
+
+  // use add function to return a message
+  const { add } = useMessages()
 
   // create axios instance to set the API as base url
   const instance = axios.create({ baseURL: 'http://localhost:4000' })
@@ -34,14 +39,29 @@ const useFetch = ({ method, url, type = null }) => {
         })
       )
 
-      exec({
-        auth: setToken,
-        users: setUsers
-      }[url.split('/')[1]])
+      // executes dispatch function and return a message
+      const dispatcher = {
+        auth: () => {
+          exec(setToken)
 
-      if (url.startsWith('/auth')) {
-        localStorage.setItem('auth', JSON.stringify(data))
+          localStorage.setItem('auth', JSON.stringify(data))
+
+          return {
+            signup: () => add('Successfully signed up'),
+            login: () => add('Successfully logged in')
+          }[url.split('/')[2]]()
+        },
+        users: () => {
+          exec(setUsers)
+
+          return {
+            get: () => { },
+            delete: () => add(`Successfully deleted user`)
+          }[method]()
+        }
       }
+
+      dispatcher[url.split('/')[1]]()
 
       setResponse(data)
     } catch ({ response }) {

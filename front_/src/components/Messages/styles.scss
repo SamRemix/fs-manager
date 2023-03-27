@@ -1,22 +1,19 @@
 @use '../../styles/mixins' as mix;
 
 
-.toasts {
+.messages {
   @include mix.flex-column-gap(.25rem);
   position: fixed;
-  // background: #f005;
   inset: 2rem -2rem;
   pointer-events: none;
   z-index: 3;
 
-  .toast {
+  .message {
     padding: .75rem;
     width: fit-content;
-    // background: #3c3c3c;
     background: #fff;
     border: 1px solid #888;
     border-radius: 10rem;
-    // color: #fff;
     white-space: nowrap;
   }
 }

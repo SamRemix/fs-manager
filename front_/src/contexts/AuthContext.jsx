@@ -2,8 +2,7 @@ import { createContext, useReducer, useEffect } from 'react'
 
 const init = {
   token: null,
-  user: null,
-  message: ''
+  user: null
 }
 
 const Reducer = (state = init, { type, payload }) => {
@@ -11,22 +10,19 @@ const Reducer = (state = init, { type, payload }) => {
     case 'SIGN_UP':
       return {
         token: payload.token,
-        user: payload.user,
-        message: 'Successfully signed up!'
+        user: payload.user
       }
 
     case 'LOG_IN':
       return {
         token: payload.token,
-        user: payload.user,
-        message: 'Successfully logged in!'
+        user: payload.user
       }
 
     case 'LOG_OUT':
       return {
         token: null,
-        user: null,
-        message: 'Successfully logged out'
+        user: null
       }
 
     default:

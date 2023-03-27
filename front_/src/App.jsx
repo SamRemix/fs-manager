@@ -10,7 +10,7 @@ import UserProfile from './pages/UserProfile'
 
 // import components
 import Layout from './components/Layout'
-import Toasts from './components/Toasts'
+import Messages from './components/Messages'
 
 import { AuthContext } from './contexts/AuthContext'
 
@@ -28,7 +28,7 @@ const App = () => {
     <>
       <LayoutGroup>
         <Layout />
-        <Toasts />
+        <Messages />
         <AnimatePresence mode="wait" initial={false}>
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<Home />} />
