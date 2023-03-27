@@ -20,7 +20,7 @@ import { AnimatePresence, LayoutGroup } from 'framer-motion'
 const App = () => {
   const location = useLocation()
 
-  const { token, user } = useContext(AuthContext)
+  const { token } = useContext(AuthContext)
 
   useFetch({ method: 'get', url: '/users' })
 
@@ -33,12 +33,12 @@ const App = () => {
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<Home />} />
 
-            <Route path="/my-files" element={<MyFiles />} />
+            {token && <Route path="/my-files" element={<MyFiles />} />}
 
             <Route path="/sign-up" element={!token ? <SignUp /> : <Navigate to="/" />} />
             <Route path="/log-in" element={!token ? <LogIn /> : <Navigate to="/" />} />
 
-            <Route path="/user-profile/:id" element={user && <UserProfile />} />
+            {token && <Route path="/user-profile/:id" element={<UserProfile />} />}
           </Routes>
         </AnimatePresence>
       </LayoutGroup>
