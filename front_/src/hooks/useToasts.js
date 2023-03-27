@@ -5,11 +5,11 @@ import { ToastsContext } from '../contexts/ToastsContext'
 const useToasts = () => {
   const { toastRef } = useContext(ToastsContext)
 
-  return {
-    add: useCallback(newToast => {
-      toastRef.current(newToast)
-    }, [toastRef])
-  }
+  const add = useCallback(newToast => {
+    toastRef.current(newToast)
+  }, [toastRef])
+
+  return { add }
 }
 
 export default useToasts
