@@ -10,6 +10,7 @@ import UserProfile from './pages/UserProfile'
 
 // import components
 import Layout from './components/Layout'
+import Toasts from './components/Toasts'
 
 import { AuthContext } from './contexts/AuthContext'
 
@@ -25,6 +26,7 @@ const App = () => {
   return (
     <>
       <Layout />
+      <Toasts />
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Home />} />
 
