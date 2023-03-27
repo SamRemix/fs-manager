@@ -39,8 +39,12 @@ const Messages = () => {
   return (
     <motion.div className="toasts" {...toastsContainerAnimation}>
       <AnimatePresence mode="popLayout">
-        {toasts.map(({ id, content }) => (
-          <motion.div key={id} layoutId={id} className="toast" {...toastAnimation}>
+        {toasts.map(({ id, content, type }) => (
+          <motion.div
+            key={id}
+            layoutId={id}
+            className={type === 'error' ? 'toast error' : 'toast'}
+            {...toastAnimation}>
             <p>{content}</p>
           </motion.div>
         ))}

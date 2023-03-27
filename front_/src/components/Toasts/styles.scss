@@ -15,5 +15,10 @@
     border: 1px solid #888;
     border-radius: 10rem;
     white-space: nowrap;
+
+    &.error {
+      border: 1px solid #888;
+      color: #FF3E00;
+    }
   }
 }
