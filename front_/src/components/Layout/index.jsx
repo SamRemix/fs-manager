@@ -1,15 +1,15 @@
 import './styles.scss'
 
-import { memo, useContext } from 'react'
+import { memo, useContext, useEffect } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 
 import { AuthContext } from '../../contexts/AuthContext'
 
 import useLogOut from '../../hooks/useLogOut'
+import useToasts from '../../hooks/useToasts'
 
 import SearchBar from '../SearchBar'
 import Button from '../Button'
-import Modal from '../Modal'
 
 import displayIcon from '../../utils/displayIcon'
 
@@ -21,6 +21,13 @@ const Layout = () => {
   const { pathname } = useLocation()
 
   const { disconnect } = useLogOut()
+  const { add } = useToasts()
+
+  useEffect(() => {
+    if (message) {
+      add({ title: message })
+    }
+  }, [message])
 
   // checks if links includes pathname and then returns 'focus' in the jsx
   const exists = links => (

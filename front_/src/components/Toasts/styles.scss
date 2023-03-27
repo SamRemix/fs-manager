@@ -1,0 +1,22 @@
+@use '../../styles/mixins' as mix;
+
+
+.toasts {
+  position: fixed;
+  inset: auto auto 2rem 2rem;
+  z-index: 3;
+
+  .toast {
+    padding: 1rem;
+    background: #3c3c3c;
+    @include mix.flex-gap(1rem);
+    align-items: center;
+    justify-content: space-between;
+    color: #fff;
+    border-radius: 1rem;
+
+    .close-button {
+      cursor: pointer;
+    }
+  }
+}
