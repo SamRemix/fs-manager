@@ -1,3 +1,4 @@
+@use '../../styles/vars' as v;
 @use '../../styles/mixins' as mix;
 
 @mixin button-style {
@@ -25,6 +26,8 @@
   @include button-style;
   background: #3c3c3c;
   color: #fff;
+  position: fixed;
+  inset: calc(1rem + v.$header-height + v.$header-inset / 2) auto auto calc(1rem + v.$root-padding / 2);
 }
 
 .submit {

@@ -16,6 +16,12 @@ $window-border-color: #1b1b1b;
 $root-background: #e6e6e6;
 
 // AFFECTS:
+// .header: width & height & inset
+// .back: inset
+$header-height: 4rem;
+$header-inset: calc($root-padding / 2);
+
+// AFFECTS:
 // .header-items: padding
 // .navbar-items: padding
 // .focus: inset

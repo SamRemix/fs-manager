@@ -87,19 +87,16 @@
   }
 }
 
-$header-height: 4rem;
-$header-inset: calc(v.$root-padding / 2);
-
 .header {
   padding: 0 1rem;
-  width: calc(100% - $header-inset);
-  height: $header-height;
+  width: calc(100% - v.$header-inset);
+  height: v.$header-height;
   @include container;
   display: flex;
   align-items: center;
   justify-content: space-between;
   position: fixed;
-  inset: calc($header-inset / 2) auto auto calc($header-inset / 2);
+  inset: calc(v.$header-inset / 2) auto auto calc(v.$header-inset / 2);
 
   &-title {
     font-size: 300%;
@@ -124,11 +121,6 @@ $header-inset: calc(v.$root-padding / 2);
       }
     }
   }
-}
-
-.previous-page {
-  position: fixed;
-  inset: calc(1rem + $header-height + $header-inset / 2) auto auto calc(1rem + v.$root-padding / 2);
 }
 
 .navbar {
