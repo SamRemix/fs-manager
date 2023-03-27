@@ -4,12 +4,12 @@ import { memo, useState, useEffect } from 'react'
 
 import { AnimatePresence, motion } from 'framer-motion'
 
-import useMessages from '../../hooks/useMessages'
+import useToasts from '../../hooks/useToasts'
 
 const Messages = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 })
 
-  const { messages } = useMessages()
+  const { toasts } = useToasts()
 
   const mouseEvent = listener => {
     addEventListener('mousemove', listener)
@@ -22,14 +22,14 @@ const Messages = () => {
     })
   }, [])
 
-  const messagesContainerAnimation = {
+  const toastsContainerAnimation = {
     animate: { ...position },
     transition: {
       type: 'spring', damping: 10, stiffness: 60, duration: .2
     }
   }
 
-  const messageAnimation = {
+  const toastAnimation = {
     initial: { opacity: 0 },
     animate: { opacity: 1 },
     exit: { opacity: 0, scale: 0 },
@@ -37,10 +37,10 @@ const Messages = () => {
   }
 
   return (
-    <motion.div className="messages" {...messagesContainerAnimation}>
+    <motion.div className="toasts" {...toastsContainerAnimation}>
       <AnimatePresence mode="popLayout">
-        {messages.map(({ id, content }) => (
-          <motion.div key={id} layoutId={id} className="message" {...messageAnimation}>
+        {toasts.map(({ id, content }) => (
+          <motion.div key={id} layoutId={id} className="toast" {...toastAnimation}>
             <p>{content}</p>
           </motion.div>
         ))}

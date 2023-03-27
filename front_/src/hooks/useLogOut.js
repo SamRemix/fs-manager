@@ -3,14 +3,14 @@ import { useNavigate } from 'react-router-dom'
 
 import { AuthContext } from '../contexts/AuthContext'
 
-import useMessages from './useMessages'
+import useToasts from './useToasts'
 
 const useLogOut = () => {
   const { dispatch } = useContext(AuthContext)
 
   const navigate = useNavigate()
 
-  const { add } = useMessages()
+  const { add } = useToasts()
 
   const disconnect = () => {
     dispatch({ type: 'LOG_OUT' })

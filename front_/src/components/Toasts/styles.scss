@@ -1,14 +1,14 @@
 @use '../../styles/mixins' as mix;
 
 
-.messages {
+.toasts {
   @include mix.flex-column-gap(.25rem);
   position: fixed;
   inset: 2rem -2rem;
   pointer-events: none;
   z-index: 3;
 
-  .message {
+  .toast {
     padding: .75rem;
     width: fit-content;
     background: #fff;

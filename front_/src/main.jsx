@@ -8,16 +8,16 @@ import './styles/index.scss'
 // context provider imports
 import { AuthProvider } from './contexts/AuthContext'
 import { UsersProvider } from './contexts/UsersContext'
-import { MessagesProvider } from './contexts/MessagesContext'
+import { ToastsProvider } from './contexts/ToastsContext'
 
 createRoot(document.getElementById('root')).render(
   <AuthProvider>
     <UsersProvider>
-      <MessagesProvider>
+      <ToastsProvider>
         <BrowserRouter>
           <App />
         </BrowserRouter>
-      </MessagesProvider>
+      </ToastsProvider>
     </UsersProvider>
   </AuthProvider>
 )

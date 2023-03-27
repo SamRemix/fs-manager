@@ -3,7 +3,7 @@ import { useState, useEffect, useContext } from 'react'
 import { AuthContext } from '../contexts/AuthContext'
 import { UsersContext } from '../contexts/UsersContext'
 
-import useMessages from './useMessages'
+import useToasts from './useToasts'
 
 import axios from 'axios'
 
@@ -15,7 +15,7 @@ const useFetch = ({ method, url, type = null }) => {
   const { dispatch: setUsers } = useContext(UsersContext)
 
   // use add function to return a message
-  const { add } = useMessages()
+  const { add } = useToasts()
 
   // create axios instance to set the API as base url
   const instance = axios.create({ baseURL: 'http://localhost:4000' })
