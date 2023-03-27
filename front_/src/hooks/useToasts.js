@@ -3,11 +3,11 @@ import { useCallback, useContext } from 'react'
 import { ToastsContext } from '../contexts/ToastsContext'
 
 const useToasts = () => {
-  const { toastRef } = useContext(ToastsContext)
+  const { addToastRef } = useContext(ToastsContext)
 
   const add = useCallback(newToast => {
-    toastRef.current(newToast)
-  }, [toastRef])
+    addToastRef.current(newToast)
+  }, [addToastRef])
 
   return { add }
 }

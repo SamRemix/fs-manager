@@ -2,21 +2,21 @@
 
 
 .toasts {
+  @include mix.flex-column-gap(.25rem);
   position: fixed;
-  inset: auto auto 2rem 2rem;
+  // background: #f005;
+  inset: 2rem -2rem;
+  pointer-events: none;
   z-index: 3;
 
   .toast {
-    padding: 1rem;
-    background: #3c3c3c;
-    @include mix.flex-gap(1rem);
-    align-items: center;
-    justify-content: space-between;
-    color: #fff;
-    border-radius: 1rem;
-
-    .close-button {
-      cursor: pointer;
-    }
+    padding: .75rem;
+    width: fit-content;
+    // background: #3c3c3c;
+    background: #fff;
+    border: 1px solid #888;
+    border-radius: 10rem;
+    // color: #fff;
+    white-space: nowrap;
   }
 }

@@ -15,6 +15,7 @@ import Toasts from './components/Toasts'
 import { AuthContext } from './contexts/AuthContext'
 
 import useFetch from './hooks/useFetch'
+import { AnimatePresence, LayoutGroup } from 'framer-motion'
 
 const App = () => {
   const location = useLocation()
@@ -25,18 +26,22 @@ const App = () => {
 
   return (
     <>
-      <Layout />
-      <Toasts />
-      <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<Home />} />
+      <LayoutGroup>
+        <Layout />
+        <Toasts />
+        <AnimatePresence mode="wait" initial={false}>
+          <Routes location={location} key={location.pathname}>
+            <Route path="/" element={<Home />} />
 
-        <Route path="/my-files" element={<MyFiles />} />
+            <Route path="/my-files" element={<MyFiles />} />
 
-        <Route path="/sign-up" element={!token ? <SignUp /> : <Navigate to="/" />} />
-        <Route path="/log-in" element={!token ? <LogIn /> : <Navigate to="/" />} />
+            <Route path="/sign-up" element={!token ? <SignUp /> : <Navigate to="/" />} />
+            <Route path="/log-in" element={!token ? <LogIn /> : <Navigate to="/" />} />
 
-        <Route path="/user-profile/:id" element={user && <UserProfile />} />
-      </Routes>
+            <Route path="/user-profile/:id" element={user && <UserProfile />} />
+          </Routes>
+        </AnimatePresence>
+      </LayoutGroup>
     </>
   )
 }

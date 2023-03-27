@@ -3,13 +3,13 @@ import { createContext, useRef } from 'react'
 const add = toast => { }
 
 const init = {
-  toastRef: { current: add }
+  addToastRef: { current: add }
 }
 
 export const ToastsContext = createContext(init)
 
 export const ToastsProvider = ({ children }) => (
-  <ToastsContext.Provider value={{ toastRef: useRef(add) }}>
+  <ToastsContext.Provider value={{ addToastRef: useRef(add) }}>
     {children}
   </ToastsContext.Provider>
 )

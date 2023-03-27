@@ -25,7 +25,7 @@ const Layout = () => {
 
   useEffect(() => {
     if (message) {
-      add({ title: message })
+      add({ message })
     }
   }, [message])
 
