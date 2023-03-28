@@ -2,7 +2,7 @@ import './styles.scss'
 
 import { memo, useState } from 'react'
 
-import displayIcon from '../../utils/displayIcon'
+import Icon from '../Icon'
 
 const Input = ({
   type = 'text',
@@ -82,7 +82,7 @@ const Input = ({
           />
 
           <div className="search-icon">
-            {displayIcon('MagnifyingGlassIcon')}
+            <Icon icon="MagnifyingGlassIcon" />
           </div>
         </>
       )}
@@ -100,7 +100,7 @@ const Input = ({
           <div
             className="eye-icon"
             onClick={() => setIsDisplay(!isDisplay)}>
-            {displayIcon(isDisplay ? 'EyeSlashIcon' : 'EyeIcon')}
+            <Icon icon={isDisplay ? 'EyeSlashIcon' : 'EyeIcon'} />
           </div>
         </>
       )}

@@ -7,7 +7,7 @@ import { animation } from './motion.config'
 
 import useToasts from '../../hooks/useToasts'
 
-import displayIcon from '../../utils/displayIcon'
+import Icon from '../Icon'
 
 const Toasts = () => {
   const { toasts, remove } = useToasts()
@@ -22,10 +22,11 @@ const Toasts = () => {
             className={type === 'error' ? 'toast error' : 'toast'}
             {...animation}>
             <p className="content">{content}</p>
-            {displayIcon('XMarkIcon', {
-              className: 'remove',
-              onClick: () => remove(id)
-            })}
+
+            <Icon
+              icon="XMarkIcon"
+              attr={{ className: 'remove', onClick: () => remove(id) }}
+            />
           </motion.div>
         ))}
       </AnimatePresence>

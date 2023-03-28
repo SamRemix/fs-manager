@@ -1,8 +1,8 @@
-import { createElement } from 'react'
+import { memo, createElement } from 'react'
 
 import * as Heroicons from '@heroicons/react/24/outline'
 
-const displayIcon = (icon, attr) => (
+const Icon = ({ icon, attr }) => (
   createElement(Heroicons[icon], {
     className: attr?.className,
     width: attr?.width || '1.5rem',
@@ -10,4 +10,4 @@ const displayIcon = (icon, attr) => (
   })
 )
 
-export default displayIcon
+export default memo(Icon)

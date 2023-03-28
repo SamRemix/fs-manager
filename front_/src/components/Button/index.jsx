@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { animation } from './motion.config'
 
-import displayIcon from '../../utils/displayIcon'
+import Icon from '../Icon'
 
 const Button = ({ children, className = 'primary', onClick = null }) => {
   const navigate = useNavigate()
@@ -21,7 +21,7 @@ const Button = ({ children, className = 'primary', onClick = null }) => {
       {...isAnimate}>
       {className === 'back' ? (
         <>
-          {displayIcon('ArrowLongLeftIcon', { width: '2rem' })}
+          <Icon icon="ArrowLongLeftIcon" attr={{ width: '2rem' }} />
           Back
         </>
       ) : children}

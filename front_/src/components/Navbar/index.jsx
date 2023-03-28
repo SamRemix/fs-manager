@@ -8,7 +8,7 @@ import { animation } from './motion.config'
 
 import { AuthContext } from '../../contexts/AuthContext'
 
-import displayIcon from '../../utils/displayIcon'
+import Icon from '../Icon'
 
 import { links } from './links'
 
@@ -24,7 +24,7 @@ const Navbar = () => {
           ((isConnected && token) || !isConnected) && (
             <li className={path === pathname ? 'item-active' : 'item'} key={id}>
               <Link to={path} className="link">
-                {displayIcon(icon)}
+                <Icon icon={icon} />
 
                 <motion.p className="link-title">{name}</motion.p>
               </Link>

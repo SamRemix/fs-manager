@@ -11,8 +11,7 @@ import { AuthContext } from '../../contexts/AuthContext'
 import useLogOut from '../../hooks/useLogOut'
 
 import SearchBar from '../SearchBar'
-
-import displayIcon from '../../utils/displayIcon'
+import Icon from '../Icon'
 
 const Header = () => {
   const { user, token } = useContext(AuthContext)
@@ -59,7 +58,7 @@ const Header = () => {
         {token && (
           <li className="item" onClick={disconnect} style={{ cursor: 'pointer' }}>
             <div className="link">
-              {displayIcon('ArrowLeftOnRectangleIcon')}
+              <Icon icon="ArrowLeftOnRectangleIcon" />
 
               <p className="link-title">Log out</p>
             </div>
@@ -70,7 +69,7 @@ const Header = () => {
           ((isConnected && token) || !isConnected && !token) && (
             <li className={path === pathname ? 'item-active' : 'item'} key={id}>
               <Link to={path} className="link">
-                {displayIcon(icon)}
+                <Icon icon={icon} />
 
                 <p className="link-title">{name}</p>
               </Link>
