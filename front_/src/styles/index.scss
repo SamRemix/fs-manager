@@ -33,7 +33,7 @@ body {
     padding: v.$root-padding;
     height: 100vh;
     background: v.$root-background;
-    @include mix.flex-center;
+    @include mix.flex-column-center;
     position: relative;
     overflow: hidden scroll;
 

@@ -4,6 +4,8 @@ import { UsersContext } from '../../contexts/UsersContext'
 
 import useFetch from '../../hooks/useFetch'
 
+import PageTitle from '../../components/PageTitle'
+
 const User = ({ name, _id }) => {
   const { fetchData: deleteUser } = useFetch({
     method: 'delete',
@@ -35,7 +37,7 @@ const Home = () => {
 
   return (
     <section className="container">
-      <h1>Home</h1>
+      <PageTitle>Home</PageTitle>
       <div style={{
         width: '80%',
         display: 'flex',

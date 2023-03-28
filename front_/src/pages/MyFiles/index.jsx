@@ -1,10 +1,12 @@
 import { memo } from 'react'
 
+import PageTitle from '../../components/PageTitle'
+
 const MyFiles = () => {
   return (
-    <section className="container">
-      <h1>My files</h1>
-    </section>
+    <section className="container" style={{ height: '150vh' }}>
+      <PageTitle>My files</PageTitle>
+    </section >
   )
 }
 
