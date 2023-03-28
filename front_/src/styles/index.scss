@@ -61,7 +61,12 @@ body {
       @include mix.flex-column-center-gap(2rem);
 
       h1 {
-        font-size: 250%;
+        font-size: clamp(600%, 24vw, 1600%);
+        color: rgba($color: #000, $alpha: .1);
+        position: absolute;
+        inset: calc(4rem + v.$header-height + v.$header-inset / 2) auto auto calc(2rem + v.$root-padding / 2);
+        white-space: nowrap;
+        cursor: default;
       }
 
       form {

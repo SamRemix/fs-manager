@@ -3,6 +3,9 @@
 import { memo, useContext } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
+import { motion } from 'framer-motion'
+import { animation } from './motion.config'
+
 import { AuthContext } from '../../contexts/AuthContext'
 
 import useLogOut from '../../hooks/useLogOut'
@@ -43,7 +46,7 @@ const Header = () => {
   ]
 
   return (
-    <header className="header">
+    <motion.header className="header" {...animation}>
       <h1 className="header-title">
         {'Cloud_remix'.split('_').map((word, i) => (
           <span key={i}>{word}</span>
@@ -79,7 +82,7 @@ const Header = () => {
           <div className="focus" />
         )}
       </ul>
-    </header>
+    </motion.header>
   )
 }
 

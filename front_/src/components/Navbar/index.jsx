@@ -3,6 +3,9 @@
 import { memo, useContext } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
+import { motion } from 'framer-motion'
+import { animation } from './motion.config'
+
 import { AuthContext } from '../../contexts/AuthContext'
 
 import displayIcon from '../../utils/displayIcon'
@@ -15,7 +18,7 @@ const Navbar = () => {
   const { pathname } = useLocation()
 
   return (
-    <nav className="navbar">
+    <motion.nav className="navbar" {...animation}>
       <ul className="navbar-items">
         {links.map(({ id, path, name, icon, isConnected }) => (
           ((isConnected && token) || !isConnected) && (
@@ -23,7 +26,7 @@ const Navbar = () => {
               <Link to={path} className="link">
                 {displayIcon(icon, { className: 'link-icon' })}
 
-                <p className="link-title">{name}</p>
+                <motion.p className="link-title">{name}</motion.p>
               </Link>
             </li>
           )
@@ -33,7 +36,7 @@ const Navbar = () => {
           <div className="focus" />
         )}
       </ul>
-    </nav>
+    </motion.nav>
   )
 }
 

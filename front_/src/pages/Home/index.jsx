@@ -11,9 +11,21 @@ const User = ({ name, _id }) => {
   })
 
   return (
-    <div key={_id}>
+    <div key={_id} style={{
+      padding: '1rem',
+      background: '#fff',
+      boxShadow: '0 2px 4px rgba(0, 0, 0, .4)',
+      borderRadius: '1rem',
+      display: 'flex',
+      alignItems: 'center',
+      gap: '1rem',
+    }}>
       <p>{name}</p>
-      <p onClick={deleteUser}>DELETE</p>
+      <p onClick={deleteUser} style={{
+        padding: '.25rem',
+        color: '#ff3e00',
+        cursor: 'pointer'
+      }}>DELETE</p>
     </div>
   )
 }
@@ -24,9 +36,17 @@ const Home = () => {
   return (
     <section className="container">
       <h1>Home</h1>
-      {users && users.map(user => (
-        <User key={user._id} {...user} />
-      ))}
+      <div style={{
+        width: '80%',
+        display: 'flex',
+        justifyContent: 'center',
+        flexWrap: 'wrap',
+        gap: '1rem'
+      }}>
+        {users && users.map(user => (
+          <User key={user._id} {...user} />
+        ))}
+      </div>
     </section>
   )
 }
