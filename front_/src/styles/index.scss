@@ -7,22 +7,23 @@
 
 * {
   &::-webkit-scrollbar {
-    width: 6px;
+    // width: 6px;
+    display: none;
   }
 
-  &::-webkit-scrollbar-thumb {
-    background: #ccc;
-    border-radius: 8px;
-  }
+  // &::-webkit-scrollbar-thumb {
+  //   background: #ccc;
+  //   border-radius: 8px;
+  // }
 
-  &::-webkit-scrollbar-track {
-    margin: 1rem;
-    border-radius: 6px;
-  }
+  // &::-webkit-scrollbar-track {
+  //   margin: 1rem;
+  //   border-radius: 6px;
+  // }
 
-  &::-webkit-scrollbar-corner {
-    background: transparent;
-  }
+  // &::-webkit-scrollbar-corner {
+  //   background: transparent;
+  // }
 }
 
 body {
@@ -31,11 +32,12 @@ body {
 
   #root {
     padding: v.$root-padding;
-    height: 100vh;
+    // height: 100vh;
+    min-height: 100vh;
     background: v.$root-background;
     @include mix.flex-column-center;
     position: relative;
-    overflow: hidden scroll;
+    // overflow: hidden scroll;
 
     $border-inset: calc(v.$root-padding / 2);
 

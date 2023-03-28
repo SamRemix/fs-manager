@@ -28,7 +28,9 @@ const App = () => {
     <>
       <LayoutGroup>
         <Layout />
+
         <Toasts />
+
         <AnimatePresence mode="wait" initial={false}>
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<Home />} />

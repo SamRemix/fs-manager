@@ -6,7 +6,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 
 import useToasts from '../../hooks/useToasts'
 
-const Messages = () => {
+const Toasts = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 })
 
   const { toasts } = useToasts()
@@ -53,4 +53,4 @@ const Messages = () => {
   )
 }
 
-export default memo(Messages)
+export default memo(Toasts)
