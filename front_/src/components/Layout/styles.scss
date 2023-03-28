@@ -19,12 +19,13 @@
     justify-content: center;
     position: relative;
 
-    &-active,
+    // &-active,
     &:hover {
       .link {
         .link-title {
           transform: translate(-50%, 0);
           opacity: 1;
+          transition: .2s;
         }
       }
     }
@@ -77,10 +78,10 @@
         color: #fff;
         position: absolute;
         white-space: nowrap;
-        transform: translate(-50%, 1rem);
+        transform: translate(-50%, .75rem);
         opacity: 0;
         pointer-events: none;
-        transition: .2s;
+        transition: .3s;
       }
     }
   }
@@ -88,14 +89,14 @@
 
 .header {
   padding: 0 1rem;
-  width: calc(100% - v.$header-inset);
+  width: calc(100% - v.$header-inset * 2);
   height: v.$header-height;
   @include container;
   display: flex;
   align-items: center;
   justify-content: space-between;
   position: fixed;
-  inset: calc(v.$header-inset / 2) auto auto calc(v.$header-inset / 2);
+  inset: calc(v.$header-inset) auto auto calc(v.$header-inset);
   z-index: 2;
 
   &-title {
@@ -127,7 +128,7 @@
   display: flex;
   justify-content: center;
   position: fixed;
-  inset: auto 0 2rem;
+  inset: auto 0 calc(1rem + v.$root-padding / 2);
   z-index: 2;
 
   &-items {

@@ -59,7 +59,7 @@ const Header = () => {
         {token && (
           <li className="item" onClick={disconnect} style={{ cursor: 'pointer' }}>
             <div className="link">
-              {displayIcon('ArrowLeftOnRectangleIcon', { className: 'link-icon' })}
+              {displayIcon('ArrowLeftOnRectangleIcon')}
 
               <p className="link-title">Log out</p>
             </div>
@@ -70,7 +70,7 @@ const Header = () => {
           ((isConnected && token) || !isConnected && !token) && (
             <li className={path === pathname ? 'item-active' : 'item'} key={id}>
               <Link to={path} className="link">
-                {displayIcon(icon, { className: 'link-icon' })}
+                {displayIcon(icon)}
 
                 <p className="link-title">{name}</p>
               </Link>

@@ -1,24 +1,47 @@
+@use '../../styles/vars' as v;
 @use '../../styles/mixins' as mix;
 
 
 .toasts {
-  @include mix.flex-column-gap(.25rem);
+  @include mix.flex-column-gap(.5rem);
+  align-items: flex-end;
   position: fixed;
-  inset: 2rem -2rem;
-  pointer-events: none;
+  inset: calc(1rem + v.$header-height + v.$header-inset) calc(1rem + v.$root-padding / 2) auto auto;
+  // pointer-events: none;
   z-index: 3;
 
   .toast {
-    padding: .75rem;
+    padding: .5rem 1rem;
     width: fit-content;
     background: #fff;
     border: 1px solid #888;
-    border-radius: 10rem;
+    border-radius: .5rem;
+    @include mix.flex-center-gap(2rem);
     white-space: nowrap;
 
     &.error {
-      border: 1px solid #888;
-      color: #FF3E00;
+      border-color: #ff3e00;
+
+      .content {
+        color: #ff3e00;
+      }
+    }
+
+    .content {
+      position: relative;
+
+      &::before {
+        content: '';
+        width: 1px;
+        height: 100%;
+        background: #888;
+        position: absolute;
+        inset: 0 auto auto calc(100% + 1rem);
+      }
+    }
+
+    .remove {
+      cursor: pointer;
     }
   }
 }

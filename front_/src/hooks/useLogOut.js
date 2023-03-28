@@ -19,7 +19,7 @@ const useLogOut = () => {
 
     navigate('/log-in')
 
-    add('Logged out')
+    add('Logged out', 'error')
   }
 
   return { disconnect }

@@ -27,7 +27,7 @@
   background: #3c3c3c;
   color: #fff;
   position: fixed;
-  inset: calc(1rem + v.$header-height + v.$header-inset / 2) auto auto calc(1rem + v.$root-padding / 2);
+  inset: calc(1rem + v.$header-height + v.$header-inset) auto auto calc(1rem + v.$root-padding / 2);
   z-index: 1;
 }
 

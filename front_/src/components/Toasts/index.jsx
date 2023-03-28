@@ -1,51 +1,31 @@
 import './styles.scss'
 
-import { memo, useState, useEffect } from 'react'
+import { memo } from 'react'
 
 import { AnimatePresence, motion } from 'framer-motion'
+import { animation } from './motion.config'
 
 import useToasts from '../../hooks/useToasts'
 
+import displayIcon from '../../utils/displayIcon'
+
 const Toasts = () => {
-  const [position, setPosition] = useState({ x: 0, y: 0 })
-
-  const { toasts } = useToasts()
-
-  const mouseEvent = listener => {
-    addEventListener('mousemove', listener)
-    return () => removeEventListener('mousemove', listener)
-  }
-
-  useEffect(() => {
-    mouseEvent(e => {
-      setPosition({ x: e.clientX, y: e.clientY })
-    })
-  }, [])
-
-  const toastsContainerAnimation = {
-    animate: { ...position },
-    transition: {
-      type: 'spring', damping: 10, stiffness: 60, duration: .2
-    }
-  }
-
-  const toastAnimation = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1 },
-    exit: { opacity: 0, scale: 0 },
-    transition: { duration: .2 }
-  }
+  const { toasts, remove } = useToasts()
 
   return (
-    <motion.div className="toasts" {...toastsContainerAnimation}>
+    <motion.div className="toasts">
       <AnimatePresence mode="popLayout">
         {toasts.map(({ id, content, type }) => (
           <motion.div
             key={id}
             layoutId={id}
             className={type === 'error' ? 'toast error' : 'toast'}
-            {...toastAnimation}>
-            <p>{content}</p>
+            {...animation}>
+            <p className="content">{content}</p>
+            {displayIcon('XMarkIcon', {
+              className: 'remove',
+              onClick: () => remove(id)
+            })}
           </motion.div>
         ))}
       </AnimatePresence>

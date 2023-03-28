@@ -4,6 +4,8 @@
 // .header: width & inset
 // .previous-page: inset
 // .navbar: inset
+// .back: inset
+// .toasts: inset
 $root-padding: 2rem;
 
 // AFFECTS:
@@ -18,8 +20,14 @@ $root-background: #e6e6e6;
 // AFFECTS:
 // .header: width & height & inset
 // .back: inset
+// .toasts: inset
 $header-height: 4rem;
-$header-inset: calc($root-padding / 2);
+
+// AFFECTS:
+// .header: width & height & inset
+// .back: inset
+// .toasts: inset
+$header-inset: calc($root-padding / 4);
 
 // AFFECTS:
 // .header-items: padding

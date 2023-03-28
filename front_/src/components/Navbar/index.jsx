@@ -24,7 +24,7 @@ const Navbar = () => {
           ((isConnected && token) || !isConnected) && (
             <li className={path === pathname ? 'item-active' : 'item'} key={id}>
               <Link to={path} className="link">
-                {displayIcon(icon, { className: 'link-icon' })}
+                {displayIcon(icon)}
 
                 <motion.p className="link-title">{name}</motion.p>
               </Link>

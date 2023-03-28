@@ -5,8 +5,9 @@ import { ToastsContext } from '../contexts/ToastsContext'
 const useToasts = () => {
   const { toasts, setToasts } = useContext(ToastsContext)
 
-  const add = (newMessage, type = 'default') => {
-    const toast = { id: Date.now(), content: newMessage, type }
+  const add = (content, type = 'default') => {
+    const toast = { id: Date.now(), content, type }
+    console.log(toast);
 
     setToasts(toasts => [toast, ...toasts])
 
@@ -15,10 +16,16 @@ const useToasts = () => {
       setToasts(toasts => (
         toasts.filter(({ id }) => id !== toast.id)
       ))
-    }, 2500)
+    }, type === 'error' ? 4000 : 2500)
+
+    return toast
   }
 
-  return { toasts, add }
+  const remove = id => {
+    setToasts(toasts => toasts.filter(toast => toast.id !== id))
+  }
+
+  return { toasts, add, remove }
 }
 
 export default useToasts
