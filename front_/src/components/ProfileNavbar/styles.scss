@@ -1,0 +1,64 @@
+@use '../../styles/vars' as v;
+@use '../../styles/mixins' as mix;
+
+.navbar-profile {
+  position: fixed;
+  inset: calc(1rem + v.$header-height *2 + v.$header-inset) auto auto calc(1rem + v.$root-padding / 2);
+  z-index: 2;
+
+  &-items {
+    padding: .75rem v.$nav-horizontal-padding;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba($color: #000, $alpha: .4);
+    border-radius: 1rem;
+    @include mix.flex-column-gap(2rem);
+    position: relative;
+
+    .item {
+      padding: .5rem;
+      height: v.$profile-nav-item-height;
+      border-radius: .5rem;
+      @include mix.flex-gap(1rem);
+      align-items: center;
+      position: relative;
+      z-index: 1;
+
+      &-active {
+        @extend .item;
+
+        // set position of 'focus' based on active element
+        @for $i from 1 through 10 {
+          &:nth-child(#{$i + 1})~.focus {
+            transform: translateY($i * calc(v.$profile-nav-item-height + 2rem));
+          }
+        }
+      }
+
+      // add separator between items
+      &:not(li:last-of-type)::before {
+        content: '';
+        width: 80%;
+        height: 1px;
+        background: #888;
+        position: absolute;
+        inset: calc(100% + 1rem) 10% auto auto;
+      }
+
+      &+.focus {
+        height: v.$profile-nav-item-height;
+        background: #dbff73;
+        border: 1px solid #888;
+        border-radius: .5rem;
+        position: absolute;
+        inset: .75rem v.$nav-horizontal-padding;
+        pointer-events: none;
+        transition: .4s;
+      }
+
+      &-title {
+        width: fit-content;
+        white-space: nowrap;
+      }
+    }
+  }
+}

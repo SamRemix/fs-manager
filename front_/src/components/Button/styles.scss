@@ -24,8 +24,8 @@
 
 .back {
   @include button-style;
-  background: #3c3c3c;
-  color: #fff;
+  background: #fff;
+  border: 1px solid #888;
   position: fixed;
   inset: calc(1rem + v.$header-height + v.$header-inset) auto auto calc(1rem + v.$root-padding / 2);
   z-index: 1;

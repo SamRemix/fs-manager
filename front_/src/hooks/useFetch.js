@@ -25,7 +25,7 @@ const useFetch = ({ method, url, type = null }) => {
     console.log(`Invalid '${method}' method`)
   }
 
-  // body = data to send if method = 'post' || 'update'
+  // body = data to send if method = 'post' || 'patch'
   const fetchData = async (body = null) => {
     try {
       const { data } = await instance[method](url, body)

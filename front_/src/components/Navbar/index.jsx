@@ -26,7 +26,7 @@ const Navbar = () => {
               <Link to={path} className="link">
                 <Icon icon={icon} />
 
-                <motion.p className="link-title">{name}</motion.p>
+                <p className="link-title">{name}</p>
               </Link>
             </li>
           )
