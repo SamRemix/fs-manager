@@ -3,6 +3,7 @@ import './styles.scss'
 import { memo, useState } from 'react'
 
 import Icon from '../Icon'
+import PasswordVerifier from '../PasswordVerifier'
 
 const Input = ({
   type = 'text',
@@ -38,7 +39,9 @@ const Input = ({
           />
 
           {maxLength && (
-            <p className="remaining">remaining: {maxLength - value.length}</p>
+            <p className="tips">
+              remaining: {maxLength - value.length}
+            </p>
           )}
         </>
       )}
@@ -52,7 +55,7 @@ const Input = ({
         />
       )}
 
-      {type === ('checkbox' || 'radio' || 'range') && (
+      {/* {type === ('checkbox' || 'radio' || 'range') && (
         <label className={checked ? `${type}-checked` : type}>
           <input
             type={type}
@@ -68,7 +71,7 @@ const Input = ({
 
           {type === 'range' ? <p>{value}%</p> : <p>{placeholder}</p>}
         </label>
-      )}
+      )} */}
 
       {type === 'search' && (
         <>
@@ -87,21 +90,27 @@ const Input = ({
         </>
       )}
 
-      {type === 'password' && (
+      {['password', 'newPassword'].includes(type) && (
         <>
-          <input
-            type={isDisplay ? 'text' : type}
-            placeholder={placeholder}
-            value={value}
-            onChange={onChange}
-            key={key}
-          />
+          <div className="input-content">
+            <input
+              type={isDisplay ? 'text' : 'password'}
+              placeholder="password"
+              value={value}
+              onChange={onChange}
+              key={key}
+            />
 
-          <div
-            className="eye-icon"
-            onClick={() => setIsDisplay(!isDisplay)}>
-            <Icon icon={isDisplay ? 'EyeSlashIcon' : 'EyeIcon'} />
+            <div
+              className="eye-icon"
+              onClick={() => setIsDisplay(!isDisplay)}>
+              <Icon icon={isDisplay ? 'EyeSlashIcon' : 'EyeIcon'} />
+            </div>
           </div>
+
+          {type === 'newPassword' && (
+            <PasswordVerifier password={value} />
+          )}
         </>
       )}
     </div>

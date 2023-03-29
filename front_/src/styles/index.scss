@@ -75,6 +75,19 @@ body {
         @include mix.flex-column-gap(1rem);
         align-items: center;
       }
+
+      .tips {
+        @include mix.flex-column-gap(1rem);
+        padding: 1rem;
+        background: #DBFF73;
+        border: 1px solid #888;
+        border-radius: 1rem;
+
+        span {
+          color: #3c3c3c;
+          font-size: 90%;
+        }
+      }
     }
   }
 }

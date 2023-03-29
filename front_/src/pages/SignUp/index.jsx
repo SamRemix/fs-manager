@@ -5,6 +5,7 @@ import useFetch from '../../hooks/useFetch'
 import PageTitle from '../../components/PageTitle'
 import Input from '../../components/Input'
 import Button from '../../components/Button'
+import PasswordVerifier from '../../components/PasswordVerifier'
 
 import setDocumentTitle from '../../utils/setDocumentTitle'
 
@@ -35,6 +36,7 @@ const SignUp = () => {
         <Input
           placeholder="Name"
           value={name}
+          maxLength={32}
           onChange={({ target }) => {
             setName(target.value)
           }}
@@ -50,13 +52,15 @@ const SignUp = () => {
         />
 
         <Input
-          type="password"
+          type="newPassword"
           placeholder="Password"
           value={password}
           onChange={({ target }) => {
             setPassword(target.value)
           }}
         />
+
+        {/* <PasswordVerifier password={password} /> */}
 
         <Button className="submit">Sign up</Button>
 
