@@ -35,12 +35,12 @@ const App = () => {
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<Home />} />
 
-            {token && <Route path="/my-files" element={<MyFiles />} />}
+            <Route path="/my-files" element={token && <MyFiles />} />
 
             <Route path="/sign-up" element={!token ? <SignUp /> : <Navigate to="/" />} />
             <Route path="/log-in" element={!token ? <LogIn /> : <Navigate to="/" />} />
 
-            {token && <Route path="/user-profile/:id" element={<UserProfile />} />}
+            <Route path="/user-profile/:id" element={token && <UserProfile />} />
           </Routes>
         </AnimatePresence>
       </LayoutGroup>
