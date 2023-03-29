@@ -5,6 +5,8 @@ import useFetch from '../../hooks/useFetch'
 import Input from '../../components/Input'
 import Button from '../../components/Button'
 
+import setDocumentTitle from '../../utils/setDocumentTitle'
+
 const LogIn = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -20,6 +22,8 @@ const LogIn = () => {
 
     fetchData({ email, password })
   }
+
+  setDocumentTitle('Log in')
 
   return (
     <section className="container">

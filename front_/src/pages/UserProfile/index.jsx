@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom'
 
 import { UsersContext } from '../../contexts/UsersContext'
 
+import setDocumentTitle from '../../utils/setDocumentTitle'
+
 const UserProfile = () => {
   const [user, setUser] = useState(null)
 
@@ -13,6 +15,8 @@ const UserProfile = () => {
   useEffect(() => {
     setUser(users?.find(({ _id }) => _id === id))
   }, [users])
+
+  setDocumentTitle(user?.name)
 
   return (
     <div>

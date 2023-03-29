@@ -6,11 +6,15 @@ import useFetch from '../../hooks/useFetch'
 
 import PageTitle from '../../components/PageTitle'
 
+import setDocumentTitle from '../../utils/setDocumentTitle'
+
 const User = ({ name, _id }) => {
   const { fetchData: deleteUser } = useFetch({
     method: 'delete',
     url: `/users/${_id}`
   })
+
+  setDocumentTitle('Home')
 
   return (
     <div key={_id} style={{
