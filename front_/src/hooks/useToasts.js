@@ -6,7 +6,7 @@ const useToasts = () => {
   const { toasts, setToasts } = useContext(ToastsContext)
 
   const add = (content, type = 'default') => {
-    const toast = { id: Date.now(), content, type }
+    const toast = { id: Date.now(), content, type, duration: type === 'error' ? 4 : 2.5 }
     console.log(toast);
 
     setToasts(toasts => [toast, ...toasts])
@@ -16,7 +16,7 @@ const useToasts = () => {
       setToasts(toasts => (
         toasts.filter(({ id }) => id !== toast.id)
       ))
-    }, type === 'error' ? 4000 : 2500)
+    }, toast.duration * 1000)
 
     return toast
   }

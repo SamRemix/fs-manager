@@ -15,7 +15,7 @@ const Toasts = () => {
   return (
     <motion.div className="toasts">
       <AnimatePresence mode="popLayout">
-        {toasts.map(({ id, content, type }) => (
+        {toasts.map(({ id, content, type, duration }) => (
           <motion.div
             key={id}
             layoutId={id}
@@ -27,6 +27,8 @@ const Toasts = () => {
               icon="XMarkIcon"
               attr={{ className: 'remove', onClick: () => remove(id) }}
             />
+
+            <div className="indicator" style={{ animationDuration: `${duration}s` }} />
           </motion.div>
         ))}
       </AnimatePresence>
