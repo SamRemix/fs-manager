@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom'
 
 import { UsersContext } from '../../contexts/UsersContext'
 
+import PageTitle from '../../components/PageTitle'
+
 import setDocumentTitle from '../../utils/setDocumentTitle'
 
 const UserProfile = () => {
@@ -19,14 +21,14 @@ const UserProfile = () => {
   setDocumentTitle(user?.name)
 
   return (
-    <div>
-      {user && (
-        <div>
-          <p>{user.name}</p>
-          <p>{user.email}</p>
-        </div>
-      )}
-    </div>
+    user && (
+      <section className="container">
+        <PageTitle>Profile</PageTitle>
+
+        <p>{user.name}</p>
+        <p>{user.email}</p>
+      </section>
+    )
   )
 }
 

@@ -2,6 +2,7 @@ import { memo, useState } from 'react'
 
 import useFetch from '../../hooks/useFetch'
 
+import PageTitle from '../../components/PageTitle'
 import Input from '../../components/Input'
 import Button from '../../components/Button'
 
@@ -27,7 +28,7 @@ const LogIn = () => {
 
   return (
     <section className="container">
-      <h1>Log in</h1>
+      <PageTitle>Log in</PageTitle>
 
       <form onSubmit={login}>
         <Input
