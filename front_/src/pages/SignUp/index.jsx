@@ -1,6 +1,7 @@
 import { memo, useState } from 'react'
 
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
+import animation from './motion.config'
 
 import useFetch from '../../hooks/useFetch'
 
@@ -34,38 +35,43 @@ const SignUp = () => {
       <PageTitle>Sign up</PageTitle>
 
       <form onSubmit={signup}>
-        <Input
-          placeholder="Name"
-          value={name}
-          maxLength={32}
-          onChange={({ target }) => {
-            setName(target.value)
-          }}
-          autoFocus
-        />
+        <motion.div {...animation.nameInput}>
+          <Input
+            placeholder="Name"
+            value={name}
+            maxLength={32}
+            onChange={({ target }) => {
+              setName(target.value)
+            }}
+            autoFocus
+          />
+        </motion.div>
 
-        <Input
-          placeholder="Email"
-          value={email}
-          onChange={({ target }) => {
-            setEmail(target.value)
-          }}
-        />
+        <motion.div {...animation.emailInput}>
+          <Input
+            placeholder="Email"
+            value={email}
+            onChange={({ target }) => {
+              setEmail(target.value)
+            }}
+          />
+        </motion.div>
 
-        <Input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={({ target }) => {
-            setPassword(target.value)
-          }}
-          isNew={true}
-        />
+        <motion.div {...animation.passwordInput}>
+          <Input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={({ target }) => {
+              setPassword(target.value)
+            }}
+            isNew={true}
+          />
+        </motion.div>
 
-
-        {/* <PasswordVerifier password={password} /> */}
-
-        <Button className="submit">Sign up</Button>
+        <motion.div {...animation.submitButton}>
+          <Button className="submit">Sign up</Button>
+        </motion.div>
 
         {error && (
           <p>{error}</p>

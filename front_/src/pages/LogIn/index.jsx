@@ -1,5 +1,8 @@
 import { memo, useState } from 'react'
 
+import { motion } from 'framer-motion'
+import animation from './motion.config'
+
 import useFetch from '../../hooks/useFetch'
 
 import PageTitle from '../../components/PageTitle'
@@ -31,25 +34,31 @@ const LogIn = () => {
       <PageTitle>Log in</PageTitle>
 
       <form onSubmit={login}>
-        <Input
-          placeholder="Email"
-          value={email}
-          onChange={({ target }) => {
-            setEmail(target.value)
-          }}
-          autoFocus={true}
-        />
+        <motion.div {...animation.emailInput}>
+          <Input
+            placeholder="Email"
+            value={email}
+            onChange={({ target }) => {
+              setEmail(target.value)
+            }}
+            autoFocus={true}
+          />
+        </motion.div>
 
-        <Input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={({ target }) => {
-            setPassword(target.value)
-          }}
-        />
+        <motion.div {...animation.passwordInput}>
+          <Input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={({ target }) => {
+              setPassword(target.value)
+            }}
+          />
+        </motion.div>
 
-        <Button className="submit">Log in</Button>
+        <motion.div {...animation.submitButton}>
+          <Button className="submit">Log in</Button>
+        </motion.div>
 
         {error && (
           <p>{error}</p>
