@@ -1,5 +1,14 @@
 @use '../../styles/mixins' as mix;
 
+form {
+  .input {
+    padding: 1rem;
+    background: #DBFF73;
+    border: 1px solid #888;
+    border-radius: 1rem;
+  }
+}
+
 .input {
   @include mix.flex-column-gap(1rem);
   position: relative;
@@ -14,6 +23,11 @@
         color: #ff3e00;
       }
     }
+  }
+
+  .title {
+    margin-left: 1rem;
+    font-weight: 600;
   }
 
   &-content {
@@ -72,54 +86,12 @@
     padding: .5rem 1rem;
   }
 
-  // >textarea {
-  //   padding: 1rem;
-  //   height: 200px;
-  //   max-height: 300px;
-  //   min-height: 100px;
-  //   resize: vertical;
-  //   line-height: 1.125rem;
+  ul {
+    @include mix.flex-column-gap(1rem);
 
-  //   &::-webkit-scrollbar-track {
-  //     margin: 0;
-  //   }
-  // }
-
-  // >.remaining {
-  //   margin: 1rem 0 0 1rem;
-  //   color: #888;
-
-  //   &-error {
-  //     @extend .remaining;
-  //   }
-  // }
-
-  // .radio,
-  // .checkbox {
-  //   display: flex;
-  //   align-items: center;
-  //   justify-content: center;
-  //   gap: 1rem;
-  //   background: #ff9c97;
-  //   border-radius: .5rem;
-  //   justify-content: space-between;
-  //   position: relative;
-  //   white-space: nowrap;
-  //   opacity: .6;
-
-  //   &-checked {
-  //     @extend .checkbox;
-  //     opacity: 1;
-  //   }
-
-  //   input {
-  //     cursor: pointer;
-  //   }
-  // }
-
-  // .range {
-  //   display: flex;
-  //   align-items: center;
-  //   gap: 1rem;
-  // }
+    li {
+      @include mix.flex-gap(1rem);
+      align-items: center;
+    }
+  }
 }

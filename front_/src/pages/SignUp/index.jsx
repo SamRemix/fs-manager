@@ -1,11 +1,12 @@
 import { memo, useState } from 'react'
 
+import { motion, AnimatePresence } from 'framer-motion'
+
 import useFetch from '../../hooks/useFetch'
 
 import PageTitle from '../../components/PageTitle'
 import Input from '../../components/Input'
 import Button from '../../components/Button'
-import PasswordVerifier from '../../components/PasswordVerifier'
 
 import setDocumentTitle from '../../utils/setDocumentTitle'
 
@@ -52,13 +53,15 @@ const SignUp = () => {
         />
 
         <Input
-          type="newPassword"
+          type="password"
           placeholder="Password"
           value={password}
           onChange={({ target }) => {
             setPassword(target.value)
           }}
+          isNew={true}
         />
+
 
         {/* <PasswordVerifier password={password} /> */}
 

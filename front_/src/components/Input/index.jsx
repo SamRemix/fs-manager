@@ -3,75 +3,54 @@ import './styles.scss'
 import { memo, useState } from 'react'
 
 import Icon from '../Icon'
-import PasswordVerifier from '../PasswordVerifier'
+
+import useVerifyPassword from '../../hooks/useVerifyPassword'
 
 const Input = ({
   type = 'text',
   placeholder,
   value,
-  checked,
   onChange,
   maxLength,
   autoFocus,
-  ref,
   error,
   setPrefix,
-  key,
-  name,
-  min,
-  max,
-  step
+  isNew,
 }) => {
   // hide - show password
   const [isDisplay, setIsDisplay] = useState(false)
+
+  const { verify } = useVerifyPassword()
 
   return (
     <div className={error ? 'input--error' : 'input'}>
       {type === 'text' && (
         <>
+          <p className="title">{placeholder}</p>
+
           <input
             placeholder={error || placeholder}
             value={error ? '' : value}
             onChange={onChange}
             maxLength={maxLength}
             autoFocus={autoFocus}
-            key={key}
           />
 
-          {maxLength && (
-            <p className="tips">
-              remaining: {maxLength - value.length}
-            </p>
-          )}
+          {maxLength && <p>remaining: {maxLength - value.length}</p>}
         </>
       )}
 
       {type === 'textarea' && (
-        <textarea
-          placeholder={placeholder}
-          value={value}
-          onChange={onChange}
-          key={key}
-        />
-      )}
+        <>
+          <p className="title">{placeholder}</p>
 
-      {/* {type === ('checkbox' || 'radio' || 'range') && (
-        <label className={checked ? `${type}-checked` : type}>
-          <input
-            type={type}
-            name={name}
+          <textarea
+            placeholder={placeholder}
             value={value}
-            checked={checked}
             onChange={onChange}
-            key={key}
-            min={min}
-            max={max}
-            step={step}
           />
-
-          {type === 'range' ? <p>{value}%</p> : <p>{placeholder}</p>}
-        </label>
-      )} */}
+        </>
+      )}
 
       {type === 'search' && (
         <>
@@ -80,8 +59,6 @@ const Input = ({
             placeholder="Search"
             value={value}
             onChange={({ target }) => setPrefix(target.value)}
-            key={key}
-            ref={ref}
           />
 
           <div className="search-icon">
@@ -90,15 +67,16 @@ const Input = ({
         </>
       )}
 
-      {['password', 'newPassword'].includes(type) && (
+      {type === 'password' && (
         <>
+          <p className="title">{placeholder}</p>
+
           <div className="input-content">
             <input
               type={isDisplay ? 'text' : 'password'}
-              placeholder="password"
+              placeholder={placeholder}
               value={value}
               onChange={onChange}
-              key={key}
             />
 
             <div
@@ -108,8 +86,26 @@ const Input = ({
             </div>
           </div>
 
-          {type === 'newPassword' && (
-            <PasswordVerifier password={value} />
+          {isNew && (
+            <>
+              <p>Password must contain :</p>
+
+              <ul>
+                {verify(value).map(({ condition, isValid }, i) => (
+                  <li key={i}>
+                    <Icon
+                      icon={isValid ? 'CheckBadgeIcon' : 'XMarkIcon'}
+                      attr={{
+                        stroke: !isValid && '#ff3e00',
+                        strokeWidth: !isValid && 2.5
+                      }}
+                    />
+
+                    <p>At least {condition}</p>
+                  </li>
+                ))}
+              </ul>
+            </>
           )}
         </>
       )}
