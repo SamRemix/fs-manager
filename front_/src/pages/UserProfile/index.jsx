@@ -32,7 +32,7 @@ const UserProfile = () => {
       setName(user.name)
       setEmail(user.email)
     }
-  }, [])
+  }, [user])
 
   const { fetchData } = useFetch({
     method: 'patch',
@@ -56,6 +56,10 @@ const UserProfile = () => {
 
         <p>{user.name}</p>
         <p>{user.email}</p>
+        <p>Created on {new Date(user.createdAt).toLocaleDateString('en', { dateStyle: 'long' })}</p>
+        {user.createdAt !== user.updatedAt && (
+          <p>Last updated {new Date(user.updatedAt).toLocaleDateString('en', { dateStyle: 'long' })}</p>
+        )}
 
         <form onSubmit={update}>
           {/* <motion.div {...animation.nameInput}> */}

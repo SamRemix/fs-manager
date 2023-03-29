@@ -11,9 +11,18 @@ const Reducer = ({ users } = init, { type, payload }) => {
         users: payload
       }
 
+    case 'PATCH':
+      return {
+        users: users.map(user => (
+          user._id === payload._id ? payload : user
+        ))
+      }
+
     case 'DELETE':
       return {
-        users: users.filter(({ _id }) => _id !== payload._id)
+        users: users.filter(user => (
+          user._id !== payload._id
+        ))
       }
 
     default:

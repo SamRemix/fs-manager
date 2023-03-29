@@ -62,13 +62,13 @@ const update = async ({ params, body }, res) => {
     return res.status(400).json({ error: 'Incorrect password' })
   }
 
-  if (password && !newPassword) {
-    return res.status(400).json({ error: 'New password required' })
-  }
+  // if (password && !newPassword) {
+  //   return res.status(400).json({ error: 'New password required' })
+  // }
 
   const user = await User
     .findOneAndUpdate({ _id: id }, {
-      name,
+      name: name || currentUser.name,
       email,
       // if hashPassword is undefined, return current user password
       password: hashPassword || currentUser.password

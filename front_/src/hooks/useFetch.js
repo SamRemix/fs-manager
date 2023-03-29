@@ -56,6 +56,7 @@ const useFetch = ({ method, url, type = null }) => {
 
           return {
             get: () => { },
+            patch: () => add(`Successfully updated profile`),
             delete: () => add(`Successfully deleted user`)
           }[method]()
         }
@@ -65,6 +66,7 @@ const useFetch = ({ method, url, type = null }) => {
 
       setResponse(data)
     } catch ({ response }) {
+      console.log(response.data.error);
       setError(response.data.error)
     }
   }
