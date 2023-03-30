@@ -1,23 +1,26 @@
 import './styles.scss'
 
 import { memo } from 'react'
-import { useLocation } from 'react-router-dom'
+import { Link, useLocation, useParams } from 'react-router-dom'
 
 import Icon from '../Icon'
 
 const ProfileNavbar = () => {
   const { pathname } = useLocation()
+  const { id } = useParams()
 
-  let id = 1
+  let linkId = 1
   const links = [
     {
-      id: id++,
+      id: linkId++,
       name: 'Details',
+      path: `/user-profile/${id}`,
       icon: 'IdentificationIcon',
     },
     {
-      id: id++,
+      id: linkId++,
       name: 'Password',
+      path: `/user-profile/${id}/password`,
       icon: 'LockClosedIcon',
     },
   ]
@@ -27,9 +30,11 @@ const ProfileNavbar = () => {
       <ul className="navbar-profile-items">
         {links.map(({ id, path, name, icon }) => (
           <li className={path === pathname ? 'item-active' : 'item'} key={id}>
-            <Icon icon={icon} />
+            <Link to={path} className="link">
+              <Icon icon={icon} />
 
-            <p className="item-title">{name}</p>
+              <p className="item-title">{name}</p>
+            </Link>
           </li>
         ))}
 

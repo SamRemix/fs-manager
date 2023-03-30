@@ -1,6 +1,7 @@
 import { memo, useContext } from 'react'
 
 import { UsersContext } from '../../contexts/UsersContext'
+import { motion } from 'framer-motion'
 
 import useFetch from '../../hooks/useFetch'
 
@@ -42,17 +43,21 @@ const Home = () => {
   return (
     <section className="container">
       <PageTitle>Home</PageTitle>
-      <div style={{
-        width: '80%',
-        display: 'flex',
-        justifyContent: 'center',
-        flexWrap: 'wrap',
-        gap: '1rem'
-      }}>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        style={{
+          width: '80%',
+          display: 'flex',
+          justifyContent: 'center',
+          flexWrap: 'wrap',
+          gap: '1rem'
+        }}>
         {users && users.map(user => (
           <User key={user._id} {...user} />
         ))}
-      </div>
+      </motion.div>
     </section>
   )
 }

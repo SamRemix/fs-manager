@@ -29,7 +29,7 @@ const App = () => {
       <LayoutGroup>
         <Layout />
 
-        <Toasts />
+        {/* <Toasts /> */}
 
         <AnimatePresence mode="wait" initial={false}>
           <Routes location={location} key={location.pathname}>
@@ -40,7 +40,7 @@ const App = () => {
             <Route path="/sign-up" element={!token ? <SignUp /> : <Navigate to="/" />} />
             <Route path="/log-in" element={!token ? <LogIn /> : <Navigate to="/" />} />
 
-            <Route path="/user-profile/:id" element={token && <UserProfile />} />
+            <Route path="/user-profile/:id/*" element={token && <UserProfile />} />
           </Routes>
         </AnimatePresence>
       </LayoutGroup>

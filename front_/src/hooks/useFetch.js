@@ -1,5 +1,7 @@
 import { useState, useEffect, useContext } from 'react'
 
+import { useNavigate } from 'react-router-dom'
+
 import { AuthContext } from '../contexts/AuthContext'
 import { UsersContext } from '../contexts/UsersContext'
 
@@ -10,6 +12,8 @@ import axios from 'axios'
 const useFetch = ({ method, url, type = null }) => {
   const [response, setResponse] = useState(null)
   const [error, setError] = useState('')
+
+  const navigate = useNavigate()
 
   const { dispatch: setToken } = useContext(AuthContext)
   const { dispatch: setUsers } = useContext(UsersContext)
@@ -45,6 +49,8 @@ const useFetch = ({ method, url, type = null }) => {
           exec(setToken)
 
           localStorage.setItem('auth', JSON.stringify(data))
+
+          navigate('/')
 
           return {
             signup: () => add('Successfully signed up'),
