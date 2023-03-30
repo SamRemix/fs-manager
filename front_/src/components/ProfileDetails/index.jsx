@@ -1,19 +1,23 @@
-import { memo, useState, useEffect } from 'react'
+import { memo, useState, useEffect, useContext } from 'react'
+
+import { AuthContext } from '../../contexts/AuthContext'
 
 import useFetch from '../../hooks/useFetch'
 
 import Input from '../Input'
 import Button from '../Button'
 
-const ProfileDetails = ({ user }) => {
+const ProfileDetails = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [newPassword, setNewPassword] = useState('')
+
+  const { user } = useContext(AuthContext)
 
   useEffect(() => {
-    if (user) {
-      setName(user.name)
-      setEmail(user.email)
-    }
+    setName(user.name)
+    setEmail(user.email)
   }, [])
 
   const { fetchData } = useFetch({
@@ -27,8 +31,15 @@ const ProfileDetails = ({ user }) => {
     fetchData({ name, email })
   }
 
+  const updatePassword = e => {
+    e.preventDefault()
+
+    fetchData({ password, newPassword })
+  }
+
   return (
-    <div>
+    <>
+      <h2>Name & email</h2>
       <form onSubmit={update}>
         <Input
           placeholder="Name"
@@ -50,11 +61,30 @@ const ProfileDetails = ({ user }) => {
         <Button className="submit">Update</Button>
       </form>
 
-      <p>Created on {new Date(user.createdAt).toLocaleDateString('en', { dateStyle: 'long' })}</p>
-      {user.createdAt !== user.updatedAt && (
-        <p>Last updated {new Date(user.updatedAt).toLocaleDateString('en', { dateStyle: 'long' })}</p>
-      )}
-    </div>
+      <h2>Password</h2>
+      <form onSubmit={updatePassword}>
+        <Input
+          type="password"
+          placeholder="Current password"
+          value={password}
+          onChange={({ target }) => {
+            setPassword(target.value)
+          }}
+        />
+
+        <Input
+          type="password"
+          placeholder="New password"
+          value={newPassword}
+          onChange={({ target }) => {
+            setNewPassword(target.value)
+          }}
+          isNew={true}
+        />
+
+        <Button className="submit">Update</Button>
+      </form>
+    </>
   )
 }
 

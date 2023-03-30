@@ -1,6 +1,8 @@
 import { memo, useContext } from 'react'
 import { Routes, Route, useLocation, Navigate } from 'react-router-dom'
 
+import { AnimatePresence, LayoutGroup } from 'framer-motion'
+
 // import pages
 import Home from './pages/Home'
 import MyFiles from './pages/MyFiles'
@@ -15,7 +17,6 @@ import Toasts from './components/Toasts'
 import { AuthContext } from './contexts/AuthContext'
 
 import useFetch from './hooks/useFetch'
-import { AnimatePresence, LayoutGroup } from 'framer-motion'
 
 const App = () => {
   const location = useLocation()
@@ -32,7 +33,7 @@ const App = () => {
         {/* <Toasts /> */}
 
         <AnimatePresence mode="wait" initial={false}>
-          <Routes location={location} key={location.pathname}>
+          <Routes location={location} key={location.key}>
             <Route path="/" element={<Home />} />
 
             <Route path="/my-files" element={token && <MyFiles />} />
@@ -40,7 +41,7 @@ const App = () => {
             <Route path="/sign-up" element={!token ? <SignUp /> : <Navigate to="/" />} />
             <Route path="/log-in" element={!token ? <LogIn /> : <Navigate to="/" />} />
 
-            <Route path="/user-profile/:id/*" element={token && <UserProfile />} />
+            <Route path="/user-profile/:id" element={token && <UserProfile />} />
           </Routes>
         </AnimatePresence>
       </LayoutGroup>

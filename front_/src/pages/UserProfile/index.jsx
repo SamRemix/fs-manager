@@ -1,18 +1,19 @@
 import { memo, useState, useEffect, useContext } from 'react'
-import { Routes, Route, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
+import { AuthContext } from '../../contexts/AuthContext'
 import { UsersContext } from '../../contexts/UsersContext'
 
 import PageTitle from '../../components/PageTitle'
-import ProfileNavbar from '../../components/ProfileNavbar'
+// import ProfileNavbar from '../../components/ProfileNavbar'
 import ProfileDetails from '../../components/ProfileDetails'
-import ProfilePassword from '../../components/ProfilePassword'
 
 import setDocumentTitle from '../../utils/setDocumentTitle'
 
 const UserProfile = () => {
   const [user, setUser] = useState(null)
 
+  const { user: currentUser } = useContext(AuthContext)
   const { users } = useContext(UsersContext)
 
   const { id } = useParams()
@@ -24,16 +25,20 @@ const UserProfile = () => {
   setDocumentTitle(user?.name)
 
   return (
-    user && (
+    (user && currentUser) && (
       <section className="container">
         <PageTitle>Profile</PageTitle>
 
-        <ProfileNavbar />
+        {currentUser._id === id ? (
+          <>
+            <ProfileDetails />
 
-        <Routes>
-          <Route path="/" element={<ProfileDetails user={user} />} />
-          <Route path="/password" element={<ProfilePassword />} />
-        </Routes>
+            <p>Created on {new Date(currentUser.createdAt).toLocaleDateString('en', { dateStyle: 'long' })}</p>
+            {currentUser.createdAt !== currentUser.updatedAt && (
+              <p>Last updated {new Date(currentUser.updatedAt).toLocaleDateString('en', { dateStyle: 'long' })}</p>
+            )}
+          </>
+        ) : <p>{user.name}</p>}
       </section>
     )
   )
